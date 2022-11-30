@@ -1,0 +1,82 @@
+.transection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    font-family: k;
+}
+
+.transection > div:nth-child(1) > span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+}
+
+.transection > div:nth-child(1) > span > svg {
+    font-size: 26px;
+}
+
+.transection > div:nth-child(2) {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+}
+
+.transection > div:nth-child(2) > span {
+    width: 100%;
+    margin: auto;
+}
+
+.transection > div:nth-child(2) > span:nth-child(1) {
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.transection > div:nth-child(2) > span:nth-child(1) > p {
+    font-size: 22px;
+}
+
+.transection > div:nth-child(2) > span:nth-child(1) > span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: .6;
+}
+
+.transection > div:nth-child(2) > span:nth-child(1) > span > small {
+    font-size: 24px;
+    color: rgba(52, 152, 219,1.0);
+}
+
+.transection > div:nth-child(2) > span:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.transection > div:nth-child(2) > span:nth-child(2) > p {
+    font-size: 22px;
+}
+
+.transection > div:nth-child(2) > span:nth-child(2) > span {
+    display: flex;
+    gap: 0 2rem;
+    width: 100%;
+}
+
+.transection > div:nth-child(2) > span:nth-child(2) > span input {
+    font-family: k;
+    font-size: 14px;
+    width: 15rem;
+}
+
+.transection > div:nth-child(2) > span:nth-child(2) > span label {
+    font-family: v;
+    font-size: 12px;
+}

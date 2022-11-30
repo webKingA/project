@@ -1,0 +1,92 @@
+.transection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  font-family: k;
+}
+
+.transection > div:nth-child(1) > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+}
+
+.transection > div:nth-child(1) > span > svg {
+  font-size: 26px;
+}
+
+.transection > div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+}
+
+.transection > div:nth-child(2) > span:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.editpart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.editpart > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.editpart > div:nth-child(1) > span {
+  width: 100%;
+}
+
+.editpart > div:nth-child(1) > span:nth-child(2) , .editpart > div:nth-child(1) > span:nth-child(3) {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.editpart > div:nth-child(1) > span:nth-child(1) label {
+  font-family: v;
+  font-size: 16px;
+}
+
+.editpart > div:nth-child(1) > span:nth-child(2) input {
+  font-family: k;
+  font-size: 14px;
+}
+
+.editpart > div:nth-child(1) > span:nth-child(2) label {
+  font-family: v;
+  font-size: 12px;
+}
+
+.editpart > div:nth-child(2) {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  margin-top: 1rem;
+}
+
+.transection > div:nth-child(3) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+  flex-direction: column;
+}
+
+.transection > div:nth-child(3) > p {
+  font-family: k;
+  font-size: 20px;
+}

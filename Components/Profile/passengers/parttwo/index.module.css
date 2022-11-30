@@ -1,0 +1,55 @@
+.profile__passenger2 {
+  width: 100%;
+  background-color: #fcfcfc;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.profile__passenger2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.profile__passenger2 > div:nth-child(1) {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile__passenger2 > div:nth-child(1) > span:nth-child(1) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: k;
+  font-size: 22px;
+}
+
+.profile__passenger2 > div:nth-child(1) > span:nth-child(1) > svg {
+  font-size: 24px;
+}
+
+.profile__passenger2 > div:nth-child(2),
+.profile__passenger2 > div:nth-child(3) {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile__passenger2 > div:nth-child(2) > p {
+  font-family: k;
+  font-size: 14px;
+}
+
+.profile__passenger2 > div:nth-child(3) {
+  margin-bottom: 1rem;
+}

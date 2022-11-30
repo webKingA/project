@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'k';
+    src: url('./../public/fonts/Kalameh\(FaNum\)-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'v';
+    src: url('./../public/fonts/Vazirmatn-Medium.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    object-fit: cover;
+}

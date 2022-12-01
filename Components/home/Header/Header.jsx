@@ -1,80 +1,85 @@
 import React from "react";
 import style from "./Header.module.css";
 import Link from "next/link";
-
+import Logo from "../../../public/images/home/architecture-1868667_1920.jpg";
 // Import Mui Start
-
 import Button from "@mui/material/Button";
 
 // Import Mui End
 
 // import Icons Start
-
 import { HiPhone } from "react-icons/hi";
+import Image from "next/image";
 
 // import Icons End
 
-const Header = () => {
-  return (
-    <div className={style.header__home}>
-      <div>
-        <span>
-          <Button
-            variant="text"
-            style={{
-              padding: "10px",
-              fontFamily: "v",
-              fontSize: "14px",
-              cursor: "pointer",
-              color: "#fff",
-            }}
-          >
-            EN
-          </Button>
-          <Button
-            variant="text"
-            style={{
-              padding: "10px",
-              fontFamily: "v",
-              fontSize: "14px",
-              cursor: "pointer",
-              color: "#fff",
-            }}
-          >
-            FA
-          </Button>
-          <Link href="/login">
-            <Button
-              variant="contained"
-              style={{
-                padding: "5px 20px",
-                borderRadius: "20px 10px",
-                fontFamily: "k",
-                fontSize: "14px",
-                cursor: "pointer",
-                backgroundColor: "#e74c3c",
-                color: "#fff",
-              }}
-            >
-              ورود
-            </Button>
-          </Link>
-        </span>
-        <span>میتوانم کمکتان کنم ؟</span>
-      </div>
-      <div>
-        <Link href="/other-services">سایر خدمات</Link>
-        <Link href="/tourism-magazine">مجله گردشگری</Link>
-        <Link href="/visa">ویزا</Link>
-      </div>
-      <div>
-        <span>
-          03132008
-          <HiPhone />
-        </span>
-      </div>
-    </div>
-  );
+// styles btns langage
+const btnStyle = {
+  fontFamily: "v",
+  fontSize: "13px",
+  cursor: "pointer",
+  color: "#fff",
 };
+
+const Header = () => (
+  <header className={style.container_header}>
+    {/* buttons langage and btn login */}
+    <div>
+      <span>
+        <Button variant="text" style={btnStyle}>
+          EN
+        </Button>
+        <Button variant="text" style={btnStyle}>
+          FA
+        </Button>
+      </span>
+
+      <Link href="/#">
+        <Button
+          variant="contained"
+          style={{
+            padding: "2px 20px",
+            borderRadius: "35px 10px",
+            fontFamily: "k",
+            fontSize: "11px",
+            cursor: "pointer",
+            backgroundColor: "#e74c3c",
+            color: "#fff",
+          }}
+        >
+          ورود
+        </Button>
+      </Link>
+
+      <Link href="#">
+        {" "}
+        <p>میتوانم کمکتان کنم؟</p>
+      </Link>
+    </div>
+    {/* navbar */}
+    <ul>
+      <li>
+        <Link href="#">سایر خدمات</Link>
+      </li>
+      <span></span>
+      <li>
+        <Link href="#">مجله گردشگری</Link>
+      </li>
+      <span></span>
+      <li>
+        <Link href="#">ویزا</Link>
+      </li>
+    </ul>
+    {/* phone number site */}
+    <div>
+      <div className={style.base}>
+        <Image fill src={Logo} alt="" />
+      </div>
+      <span>
+        03132008 <HiPhone />
+      </span>
+    </div>
+  </header>
+);
 
 export default Header;

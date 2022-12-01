@@ -1,58 +1,67 @@
-.header__home {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #34495e;
+
+
+.container_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.3rem 3.5rem;
+  background-color: #00094d;
+  color: white;
+  box-shadow: 1px 1px 13px 1px rgba(0, 0, 0, 0.3);
 }
 
-.header__home > div:nth-child(1) {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.container_header > div:nth-child(1) {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 1rem;
 }
 
-.header__home > div:nth-child(1) > span:nth-child(2) {
-    font-family: v;
-    font-size: 14px;
-    color: #fff;
+.container_header > div:nth-child(1) a {
+  color: white;
+  text-decoration: none;
+  font-family: v;
+  font-size: 13px;
 }
 
-.header__home > div:nth-child(2) {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
+.container_header > ul {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  gap: 25px;
+  list-style: none;
+}
+.container_header > ul > li > a {
+  text-decoration: none;
+  color: white;
+  font-family: v;
+  font-size: 13px;
 }
 
-.header__home > div:nth-child(2) > a {
-    font-family: v;
-    font-size: 16px;
-    cursor: pointer;
-    color: #fcfcfc;
-    text-decoration: none;
-    border-left: 1px solid #fcfcfc;
-    padding-left: 1rem;
+.container_header > ul > span {
+  display: inline-block;
+  width: 1px;
+  background-color: white;
 }
 
-.header__home > div:nth-child(2) > a:last-child {
-    border-left: 0;
+.container_header > div:nth-child(3) {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  flex: 1;
 }
-
-.header__home > div:nth-child(3) > span {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: k;
-    font-size: 16px;
-    color: #fff;
-}
-
-.header__home > div:nth-child(3) > span > svg {
-    color: #34495e;
-    background-color: #f39c12;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 50%;
-    padding: 4px;
+.container_header > div:nth-child(3) .base {
+  position: absolute;
+  top: -40px;
+  left: 8rem;
+  width: 150px;
+  height: 150px;
+  rotate: 90deg;
+  clip-path: polygon(
+    0% 0%,
+    75% 0%,
+    100% 50%,
+    75% 100%,
+    0% 100%
+  );
 }

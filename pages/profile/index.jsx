@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import Link from "next/link";
 import { useRecoilState } from "recoil";
@@ -37,6 +37,12 @@ import Button from "@mui/material/Button";
 // mui End
 
 const Index = () => {
+  useEffect(() => {
+    if (window.localStorage.getItem('token') == null) {
+      window.location = '/login';
+    }
+  }, []);
+
   const [showModalEditPass, setShowModalEditPass] =
     useRecoilState(ModalEditPassword);
   const [showModalEditEmail, setShowModalEditEmail] =
@@ -79,11 +85,14 @@ const Index = () => {
                 موجودی و تراکنش ها
               </Link>
             </li>
-            <li>
-              <Link href="/">
-                <IoExitOutline />
-                خروج از حساب کاربری
-              </Link>
+            <li
+              onClick={() => {
+                window.localStorage.removeItem("token");
+                window.location = "/";
+              }}
+            >
+              <IoExitOutline />
+              خروج از حساب کاربری
             </li>
           </ul>
         </div>

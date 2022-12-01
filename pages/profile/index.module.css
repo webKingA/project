@@ -38,6 +38,18 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.profile__wrapper__navbar > ul > li:last-child {
+  width: 90%;
+  margin: auto;
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  font-family: k;
+  font-size: 16px;
+}
+
 .profile__wrapper__navbar > ul > li > a {
   width: 90%;
   margin: auto;
@@ -50,12 +62,18 @@
   font-size: 16px;
 }
 
-.profile__wrapper__navbar > ul > li:last-child > a {
+.profile__wrapper__navbar > ul > li:last-child {
   color: #e74c3c;
 }
 
-.profile__wrapper__navbar > ul > li:last-child > a > svg {
+.profile__wrapper__navbar > ul > li:last-child > svg {
   color: #e74c3c;
+}
+
+.profile__wrapper__navbar > ul > li > svg {
+  font-size: 28px;
+  color: #000;
+  margin: 0 10px;
 }
 
 .profile__wrapper__navbar > ul > li > a > svg {

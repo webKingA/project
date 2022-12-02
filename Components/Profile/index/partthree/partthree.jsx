@@ -11,6 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 
+
 export default function partthree() {
   const [showModalPersonalInformation, setShowModalPersonalInformation] =
     useState(false);
@@ -40,6 +41,10 @@ export default function partthree() {
   const handleChangeGender = (event) => {
     setGender(event.target.value);
   };
+  const [userName , setUserName] = useState("")
+  const [userLastName , setUserLastName] = useState("")
+  const [nationalCode , setNationalCode] = useState("")
+  const [nesMobile , setNesMobile] = useState("")
 
   return (
     <div className={style.profile__wrapper__information__three}>
@@ -100,6 +105,8 @@ export default function partthree() {
                 label="نام"
                 variant="outlined"
                 style={{ width: "100%" }}
+                value={userName}
+                onChange={e => {setUserName(e.target.value)}}
               />
             </span>
             <span>
@@ -108,6 +115,8 @@ export default function partthree() {
                 label="نام خانوادگی"
                 variant="outlined"
                 style={{ width: "100%" }}
+                value={userLastName}
+                onChange={e => {setUserLastName(e.target.value)}}
               />
             </span>
             <span>
@@ -233,6 +242,8 @@ export default function partthree() {
                 label="کد ملی"
                 variant="outlined"
                 style={{ width: "100%" }}
+                value={nationalCode}
+                onChange={e => {setNationalCode(e.target.value)}}
               />
             </span>
             <span>
@@ -241,6 +252,8 @@ export default function partthree() {
                 label="شماره تماس ضروری"
                 variant="outlined"
                 style={{ width: "100%" }}
+                value={nesMobile}
+                onChange={e => {setNesMobile(e.target.value)}}
               />
             </span>
           </div>

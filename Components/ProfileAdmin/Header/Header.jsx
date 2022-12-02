@@ -1,4 +1,4 @@
-import React, { useState , useRef } from "react";
+import React, { useState, useRef } from "react";
 import style from "./Header.module.css";
 import Link from "next/link";
 
@@ -13,12 +13,9 @@ import { AiOutlineLeft } from "react-icons/ai";
 
 const Header = () => {
   const [showNavbar, setShowNavbar] = useState(false);
-  const [showExit, setShowExit] = useState(false);
 
   let ulRef = useRef();
   let aRef = useRef();
-
-
 
   return (
     <div className={style.header__container}>
@@ -36,35 +33,54 @@ const Header = () => {
           </span>
           <span>
             <ul>
-              <Link href='/'>
-                مدیریت کاربران و دسترسی
+              <Link href="/">
+                مدیریت کاربران
                 <AiOutlineLeft />
               </Link>
-              <li onClick={() => {
-                ulRef.current.classList.toggle(style.hide);
-                aRef.current.classList.toggle(style.m_top);
-              }}>
+              <Link href="/profile-admin/role-managment">
+                مدیریت نقش ها
+                <AiOutlineLeft />
+              </Link>
+              <li
+                onClick={() => {
+                  ulRef.current.classList.toggle(style.hide);
+                  aRef.current.classList.toggle(style.m_top);
+                }}
+              >
                 مدیریت رزرو ها
                 <AiOutlineLeft />
                 <ul ref={ulRef} className={style.hide}>
-                  <Link href='/'>
+                  <Link href="/profile-admin/internal-flight">
                     پرواز داخلی
                     <AiOutlineLeft />
                   </Link>
-                  <Link href='/'>
-                    هتل
+                  <Link href="/profile-admin/internal-hotels">
+                    هتل های داخلی
                     <AiOutlineLeft />
                   </Link>
                 </ul>
               </li>
-              <Link href='/' ref={aRef}>
-                مغایرت گیری
+              <Link href="/profile-admin/conflicts" ref={aRef}>
+                لیست مغایرت ها
                 <AiOutlineLeft />
               </Link>
-              <Link href='/'>
-                گزارش گیری
+              <Link href="/profile-admin/reports">
+                لیست گزارشات
                 <AiOutlineLeft />
               </Link>
+              <li>
+                <span className={style.span3}>
+                  <p
+                    onClick={() => {
+                      window.localStorage.removeItem("token");
+                      window.localStorage.removeItem("isAdmin");
+                      window.location = "/";
+                    }}
+                  >
+                    خروج
+                  </p>
+                </span>
+              </li>
             </ul>
           </span>
         </div>
@@ -77,31 +93,8 @@ const Header = () => {
         />
       </span>
       <span className={style.span2}>
-        <FaUserCircle
-          onClick={() => {
-            setShowExit(!showExit);
-          }}
-        />
-        <p
-          onClick={() => {
-            setShowExit(!showExit);
-          }}
-        >
-          09120148604
-        </p>
-        {showExit == true && (
-          <span className={style.span3}>
-            <p
-              onClick={() => {
-                window.localStorage.removeItem("token");
-                window.localStorage.removeItem("isAdmin");
-                window.location = "/";
-              }}
-            >
-              خروج
-            </p>
-          </span>
-        )}
+        <FaUserCircle />
+        <p>09120148604</p>
       </span>
     </div>
   );

@@ -29,29 +29,6 @@
     cursor: pointer;
 }
 
-.span3 {
-    position: absolute;
-    top: 2rem;
-    right: -1rem;
-    width: 10rem;
-    text-align: center;
-}
-
-.span3 > p {
-    color: black;
-    border: 2px solid #c0392b;
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff;
-    transition: .4s;
-    font-family: k;
-}
-
-.span3 > p:hover {
-    color: #fff;
-    background-color: #c0392b;
-}
-
 .navbar {
     position: fixed;
     top: 0;
@@ -154,4 +131,12 @@
 
 .m_top {
     margin-top: 5rem;
+}
+
+@media screen and (max-width : 600px) {
+    .navbar {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
 }

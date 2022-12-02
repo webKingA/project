@@ -8,8 +8,12 @@ import TextField from "@mui/material/TextField";
 export default function partfour() {
   const [showModalPersonalInformation, setShowModalPersonalInformation] =
     useState(false);
+    const [shabaNumber , setShabaNumber] = useState("")
+    const [accountNumber , setAccountNumber] = useState("")
+    const [cardNumber , setCardNumber] = useState("")
 
-  return (
+
+    return (
     <div className={style.profile__wrapper__information__four}>
       <div>
         <span>
@@ -69,18 +73,25 @@ export default function partfour() {
               label="شماره شبا"
               variant="outlined"
               style={{width : "100%"}}
+              value={shabaNumber}
+              onChange={e => {setShabaNumber(e.target.value)}}
             />
             <TextField
               id="outlined-basic"
               label="شماره حساب"
               variant="outlined"
               style={{width : "100%"}}
+              value={accountNumber}
+              onChange={e => {setAccountNumber(e.target.value)}}
+
             />
             <TextField
               id="outlined-basic"
               label="شماره کارت"
               variant="outlined"
               style={{width : "100%"}}
+              value={cardNumber}
+              onChange={e => {setCardNumber(e.target.value)}}
             />
           </div>
           <div

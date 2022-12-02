@@ -1,0 +1,85 @@
+.table__container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.table__container > div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  direction: ltr;
+}
+
+.table__container > div:nth-child(1) button {
+  font-family: k;
+  font-size: 18px;
+}
+
+.table__container > div:nth-child(1) svg {
+  font-size: 30px;
+}
+
+.information__table {
+  width: 100%;
+  height: auto;
+}
+
+.information__table > table {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.thead > th {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.thead > th > tr {
+  font-family: k;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+}
+
+.tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tbody > td {
+  display: flex;
+  align-items: center;
+}
+
+.tbody > td:nth-child(odd) {
+    background-color: red;
+}
+
+.tbody > td:nth-child(even) {
+    background-color: blue;
+}
+
+.tbody > td:nth-child(1) {
+    margin-top: 1rem;
+}
+
+.tbody > td > tr {
+  text-align: center;
+  width: 100%;
+}
+
+.tbody > td > tr:last-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tbody > td > tr:last-child > button svg {
+  color: #fff;
+}

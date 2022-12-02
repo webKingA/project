@@ -1,0 +1,29 @@
+.table__container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 4rem;
+}
+
+.table__container > div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    direction: ltr;
+}
+
+.table__container > div:nth-child(1) button {
+    font-family: k;
+    font-size: 18px;
+}
+
+.table__container > div:nth-child(1) svg {
+    font-size: 30px;
+}
+
+.information__table {
+    width: 100%;
+    height: auto;
+}

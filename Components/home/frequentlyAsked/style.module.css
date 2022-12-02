@@ -1,0 +1,12 @@
+.container_frequentlyAsked{
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.container_frequentlyAsked > h4{
+    color: #003399;
+    font-family: v;
+
+}

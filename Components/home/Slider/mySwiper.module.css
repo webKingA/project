@@ -1,0 +1,22 @@
+/* .mySwiper{
+   margin-top: 10rem;
+   height: 800px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.mySwiper > div{
+    max-width: 900px !important;
+    height: 300px !important;
+    background-color: red;
+}
+
+.mySwiper > div .swiper-slide {
+    width:200px !important ;
+}
+.mySwiper > div .swiper-slide img {
+    width:200px !important ;
+    height:200px !important ;
+    
+} */

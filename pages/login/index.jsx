@@ -35,8 +35,10 @@ const Index = () => {
             data.access.some((item) => {
               if (item == "Admin") {
                 window.location = "/profile-admin";
+                window.localStorage.setItem("isAdmin", true);
               } else {
                 window.location = "/profile";
+                window.localStorage.setItem("isAdmin", false);
               }
             });
           } else {

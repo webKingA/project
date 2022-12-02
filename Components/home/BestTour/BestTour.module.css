@@ -1,0 +1,238 @@
+.container_bestTour {
+  margin: 60px auto;
+}
+.container_bestTour > div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.container_bestTour > div:nth-child(1) > div:nth-child(1) {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.container_bestTour > div:nth-child(1) > div:nth-child(2) {
+  display: flex;
+  gap: 1px;
+  flex-direction: column;
+}
+.container_bestTour
+  > div:nth-child(1)
+  > div:nth-child(2)
+  > p {
+  font-size: 15px;
+  font-family: v;
+}
+
+.container_bestTour
+  > div:nth-child(1)
+  > div:nth-child(2)
+  > p:nth-child(1) {
+  color: #000122;
+}
+.container_bestTour
+  > div:nth-child(1)
+  > div:nth-child(2)
+  > p:nth-child(2) {
+  color: #685634;
+}
+.container_bestTour
+  > div:nth-child(1)
+  > div
+  > div:nth-child(2) {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background-color: #fff;
+  height: 60px;
+  border-radius: 5px;
+  padding: 0 6px;
+}
+.container_bestTour
+  > div:nth-child(1)
+  > div
+  > div:nth-child(2)
+  > p
+  > span:nth-child(1) {
+  font-size: 11px;
+}
+.container_bestTour
+  > div:nth-child(1)
+  > div
+  > div:nth-child(2)
+  > p
+  > span:nth-child(2) {
+  font-size: 13px;
+}
+.container_bestTour
+  > div:nth-child(1)
+  > div
+  > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #fff;
+  width: fit-content;
+  border-radius: 5px;
+  height: 60px;
+  position: relative;
+  padding: 0 6px;
+}
+
+.container_bestTour > div:nth-child(1) p {
+  display: flex;
+  flex-direction: column;
+  font-family: v;
+  font-size: 14px;
+}
+
+.container_bestTour
+  > div:nth-child(1)
+  p
+  > span:nth-child(1) {
+  color: #373738;
+}
+.container_bestTour
+  > div:nth-child(1)
+  p
+  > span:nth-child(2) {
+  color: black;
+  font-size: 15px;
+}
+.container_bestTour > div:nth-child(1) svg {
+  cursor: pointer;
+}
+
+.container_bestTour > div:nth-child(1) > div > div > div {
+  position: absolute;
+  bottom: -105px;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 6px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.container_bestTour
+  > div:nth-child(1)
+  > div
+  > div
+  > div.active {
+  opacity: 1;
+}
+
+.countPersonStyle {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin-top: 10px;
+}
+
+.countPersonStyle > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.countPersonStyle > div > button {
+  background-color: transparent;
+  border: hidden;
+  font-size: 19px;
+  cursor: pointer;
+}
+.countPersonStyle > div > p {
+  font-size: 12px !important;
+}
+.countPersonStyle > p {
+  font-size: 12px !important;
+}
+
+/* ***********************card*************************** */
+
+.container_card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  margin-top: 5rem;
+  gap: 80px 50px;
+}
+
+.container_card > div {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  cursor: pointer !important;
+}
+
+.container_card .card {
+  width: 95% !important;
+  margin: 0 auto;
+  height: 100% !important;
+  position: relative;
+  border: 8px solid white;
+  border-radius: 8px !important;
+  z-index: -1;
+  transition: all 0.3 ease-in-out;
+
+}
+
+.container_card .robon {
+  position: absolute !important;
+  width: 60px !important;
+  height: 30px !important;
+  top: -9px !important;
+  left: -9px !important;
+  z-index: 9999 !important;
+  background-color: #670a12 !important;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  color: white;
+  font-family: v;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_card .info_card > div:nth-child(1) {
+  width: 100%;
+  background-color: #670a12;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  color: white;
+  font-family: v;
+  margin-top: -10px;
+  z-index: 1;
+}
+
+.container_card .info_card > p {
+  font-family: v;
+  width: fit-content;
+  padding: 5px;
+  background-color: #6c5b3d;
+  color: white;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-right: 10px;
+  font-size: 10px;
+}
+
+/* .card:hover {
+  transform: scale(1.9);
+} */
+
+
+.container_card .card .desc_card{
+position: absolute;
+bottom: 7px;
+background-color: #00000080;
+width: 100%;
+color: white;
+padding: 5px 15px;
+font-family: v;
+font-size: 12px;
+display: flex;
+gap: 16px;
+}

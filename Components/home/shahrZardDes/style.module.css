@@ -1,0 +1,47 @@
+.container_description{
+margin-top: 5rem;
+background-color: white;
+padding: 20px;
+border-radius: 10px;
+
+}
+
+
+.container_description .logo{
+    width: 200px;
+    height: 200px;
+}
+
+.container_description h4{
+    font-family: v;
+    color: #003399;
+}
+.container_description > p{
+    font-family: v;
+    color: #F9C95F;
+    font-size: 11px;
+}
+
+.container_description   .description{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    border-bottom:  1px solid #F9C95F;
+    padding-bottom: 20px;
+}
+
+.container_description .description > div:nth-child(1){
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.container_description .description > div:nth-child(1) > p{
+    font-family: v;
+    text-align: justify;
+    font-size: 14px;
+    color: #89898C
+}
+
+

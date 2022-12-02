@@ -1,0 +1,154 @@
+.footer {
+  background-image: linear-gradient(
+    45deg,
+    #00001f 20%,
+    #182848 70%,
+    #4b6cb7 100%
+  );
+  width: 100%;
+  margin-top: 70px;
+}
+
+.footer > div:nth-child(1) {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.footer .phone_logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.footer .phone_logo > div {
+  display: flex;
+  gap: 10px;
+  background-color: #ecd192;
+  padding: 10px;
+  border-radius: 10px;
+}
+.footer .phone_logo p {
+  font-family: v;
+  font-size: 12px;
+}
+.footer .phone_logo p:nth-child(1) {
+  color: #182848;
+}
+.footer .phone_logo p:nth-child(2) {
+  color: #000641;
+  font-weight: 900;
+}
+.footer .phone_logo img {
+  width: 200px;
+  height: 50px;
+}
+
+.footer > div .address_media {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-top: 1px solid #ecd192;
+  border-bottom: 1px solid #ecd192;
+}
+
+.footer > div .address_media p {
+  color: white;
+  font-family: v;
+  font-size: 12px;
+}
+.footer > div .address_media > div:nth-child(2) {
+  display: flex;
+  gap: 15px;
+}
+.footer > div .address_media svg {
+  color: #ecd192;
+  width: 18px;
+  height: 18px;
+}
+
+
+.footer .quick_access{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer .quick_access > div:nth-child(1){
+    flex:1;
+    width: 100%;
+    display: flex;
+    gap: 15rem;
+}
+.footer .quick_access > div:nth-child(2){
+    flex:1;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.footer li{
+  list-style: none;
+}
+.footer a{
+ text-decoration: none;
+ font-family: v;
+ color: white;
+ font-size: 13px;
+}
+.footer .quick_access >div{
+  margin-top: 25px;
+}
+
+.footer .quick_access >div ul{
+  display: flex;
+  flex-direction: column;
+  gap:10px
+
+}
+.footer .quick_access  .get_app{
+  display: flex;
+  justify-content: space-between;
+
+}
+.footer .quick_access  .get_app >img{
+  width: 200px;
+  height: 50px;
+  object-fit: contain;
+
+}
+.footer .quick_access .footer_bottm_left{
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+
+}
+
+.footer .quick_access .footer_bottm_left > div:nth-child(2){
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.footer .quick_access .footer_bottm_left>div:nth-child(2) >div{
+  width: 120px;
+  height: 100px;
+  border:  1px solid #ecd192;
+}
+
+.footer .text_services_footer{
+  width: 100%;
+  background-color: #ecd192;
+  margin-top: 30px;
+}
+
+.footer  .text_services_footer >p{
+  text-align: center;
+  padding: 13px 0;
+  font-family: v;
+  font-size: 13px;
+}

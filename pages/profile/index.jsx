@@ -88,6 +88,7 @@ const Index = () => {
             <li
               onClick={() => {
                 window.localStorage.removeItem("token");
+                window.localStorage.removeItem("isAdmin");
                 window.location = "/";
               }}
             >

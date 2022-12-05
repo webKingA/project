@@ -21,7 +21,7 @@ const Index = () => {
         rememberMe: true,
       };
 
-      fetch("http://62.3.41.67:8090/api/v1/Login/login", {
+      fetch("http://62.3/api/v1/Login/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -9,6 +9,9 @@ import { RiLockPasswordLine } from "react-icons/ri";
 
 // import Icons End
 
+// decode
+import jwt_decode from "jwt-decode";
+
 const Index = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -31,10 +34,13 @@ const Index = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.isSuccess == true) {
+            const decoded = jwt_decode(data.token);
+
             window.localStorage.setItem(
               "token",
               data.token
             );
+            window.localStorage.setItem("user", decoded.Id);
             Cookie.set("token", data.token);
             data.access.some((item) => {
               if (item == "Admin") {

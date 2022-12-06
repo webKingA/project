@@ -2,7 +2,7 @@ import axios from "axios";
 
 const fetchClient = () => {
   const defaultOptions = {
-    baseURL: process.env.BASEURL,
+    baseURL: "http://62.3.41.67:8090/api",
     headers: {
       "Content-Type": "application/json",
     },

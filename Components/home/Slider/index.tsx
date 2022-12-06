@@ -1,37 +1,57 @@
-import React, { useState } from "react";
-import ReactSlick from "react-slick";
-import "../../../node_modules/slick-carousel/slick/slick.css";
-import "../../../node_modules/slick-carousel/slick/slick-theme.css";
+import Card from "./Card";
+import Carroussel from "./Carousel";
+import style from "./mySwiper.module.css"
 
-import style from "./mySwiper.module.css";
-const slides = [
-  "https://swiperjs.com/demos/images/nature-1.jpg",
-  "https://swiperjs.com/demos/images/nature-2.jpg",
-  "https://swiperjs.com/demos/images/nature-3.jpg",
-  "https://swiperjs.com/demos/images/nature-4.jpg",
-  "https://swiperjs.com/demos/images/nature-5.jpg",
-  "https://swiperjs.com/demos/images/nature-6.jpg",
-  "https://swiperjs.com/demos/images/nature-7.jpg",
-];
-export const Slider = () => {
-  const [slideIndex, setSlideIndex] = useState(1);
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-  };
+const Slider = () => {
+  let cards = [
+    {
+      key: 1,
+      content: <Card />,
+    },
+    {
+      key: 2,
+      content: <Card />,
+    },
+    {
+      key: 3,
+      content: <Card />,
+    },
+    {
+      key: 4,
+      content: <Card />,
+    },
+    {
+      key: 5,
+      content: <Card />,
+    },
+    {
+      key: 7,
+      content: <Card />,
+    },
+    {
+      key: 8,
+      content: <Card />,
+    },
+  ];
   return (
-    <section className={style.slider}>
-      <ReactSlick {...settings}>
-        {slides.map((i, index) => (
-          <div className={style.slide_items} key={index}>
-            <img src={i} />
-          </div>
-        ))}
-      </ReactSlick>
-    </section>
+    <div className={style.container_slider}>
+      <div className={style.slider_text}>
+        {" "}
+        <h1>سفر به بهترین مقاصد دنیا</h1>
+        <p>
+          مناطق گردشگری | مردم | آداب | پول رایج | سیاست
+        </p>
+      </div>
+      <Carroussel
+        cards={cards}
+        height="500px"
+        width="90%"
+        margin="0 auto"
+        offset={2}
+        showArrows={false}
+      />
+    </div>
   );
 };
+
+export default Slider;

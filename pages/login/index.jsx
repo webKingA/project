@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./index.module.css";
 import Swal from "sweetalert2";
-
+import Cookie from "js-cookie";
 // import Icons Start
 
 import { AiOutlineUser } from "react-icons/ai";
@@ -31,14 +31,24 @@ const Index = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.isSuccess == true) {
-            window.localStorage.setItem("token", data.token);
+            window.localStorage.setItem(
+              "token",
+              data.token
+            );
+            Cookie.set("token", data.token);
             data.access.some((item) => {
               if (item == "Admin") {
                 window.location = "/profile-admin";
-                window.localStorage.setItem("isAdmin", true);
+                window.localStorage.setItem(
+                  "isAdmin",
+                  true
+                );
               } else {
                 window.location = "/profile";
-                window.localStorage.setItem("isAdmin", false);
+                window.localStorage.setItem(
+                  "isAdmin",
+                  false
+                );
               }
             });
           } else {

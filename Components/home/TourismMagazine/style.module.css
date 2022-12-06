@@ -1,20 +1,6 @@
-.container_tourismMagazine {
-  margin-top: 9rem;
-  border-radius: 10px;
-}
-.container_tourismMagazine > div:nth-child(1) {
-  padding: 40px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: v;
-}
-.container_tourismMagazine > div:nth-child(1) > h1 {
-  color: #003399;
-}
-.container_tourismMagazine > div:nth-child(1) > p {
-  color: #686868;
+.container_tourism_magazinde {
+  padding: 30px;
+  margin-top: 120px;
 }
 .container_card_tourismMagazine {
   display: grid;
@@ -23,15 +9,24 @@
   justify-items: center;
   gap: 30px;
 }
+.container_tourism_magazinde > div>div{
+  height: 400px !important;
+}
+.container_tourism_magazinde > div > div > div >div{
+  height: 370px !important;
+  width: 300px !important;
+  margin: 0 30px;
+}
+
 .container_card {
   height: 370px;
+  width: 300px;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
   overflow: hidden;
   font-family: v;
   position: relative;
   box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
-
 }
 .container_card > div > div {
   padding: 0 10px;

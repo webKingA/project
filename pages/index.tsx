@@ -31,7 +31,7 @@ export default function Home() {
       <Header />
       <main>
         <PartOne />
-        <div>
+        <div style={{ width: "80%", margin: "0 auto" }}>
           <BestTour />
         </div>
         <Slider />

@@ -6,11 +6,13 @@ import Image from "next/image";
 import Header from "./../Components/home/Header/Header";
 import PartOne from "./../Components/home/PartOne/PartOne";
 import BestTour from "./../Components/home/BestTour/BestTour";
-import { Slider } from "../Components/home/Slider";
 import TourismMagazine from "../Components/home/TourismMagazine";
 import ShahrZardDes from "../Components/home/shahrZardDes";
 import FrequentlyAsked from "../Components/home/frequentlyAsked";
 import Footer from "../Components/home/Footer";
+import { GetServerSideProps } from "next";
+import { itemsFooter } from "../utils/data";
+import Slider from "../Components/home/Slider/index";
 
 // import Component End
 
@@ -31,7 +33,9 @@ export default function Home() {
         <PartOne />
         <div style={{ width: "80%", margin: "0 auto" }}>
           <BestTour />
-          <Slider/>
+        </div>
+        <Slider />
+        <div style={{ width: "80%", margin: "0 auto" }}>
           <TourismMagazine />
           <ShahrZardDes />
           <FrequentlyAsked />
@@ -41,3 +45,19 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps =
+  async (ctx) => {
+    const token = ctx.req.cookies["token"];
+    if (!token) {
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    }
+    return {
+      props: {},
+    };
+  };

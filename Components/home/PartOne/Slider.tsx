@@ -2,9 +2,9 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
-import Image1 from "../../../../public/images/home/architecture.jpg";
-import Image2 from "../../../../public/images/home/kuala-lumpur.jpg";
-import Image3 from "../../../../public/images/home/prague.jpg";
+import Image1 from "../../../public/images/home/architecture.jpg";
+import Image2 from "../../../public/images/home/kuala-lumpur.jpg";
+import Image3 from "../../../public/images/home/prague.jpg";
 import Image from "next/image";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";

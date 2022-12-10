@@ -1,22 +1,40 @@
 @font-face {
-    font-family: 'k';
-    src: url('./../public/fonts/Kalameh\(FaNum\)-Bold.ttf');
+  font-family: "k";
+  src: url("./../public/fonts/Kalameh\(FaNum\)-Bold.ttf");
 }
 
 @font-face {
-    font-family: 'v';
-    src: url('./../public/fonts/Vazirmatn-Medium.ttf');
+  font-family: "v";
+  src: url("./../public/fonts/Vazirmatn-Medium.ttf");
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    background-color:#F1F1F1;
+body {
+  background-color: #f1f1f1;
 }
 
 img {
-    object-fit: cover !important;
+  object-fit: cover;
 }
+.mySwiper .swiper-3d .swiper-slide {
+  width: 110px !important;
+}
+
+.css-1hf1o2u-container .css-1hb7zxy-IndicatorsContainer {
+  display: none;
+}
+
+.rmdp-wrapper .rmdp-header-values{
+  font-family: "v";
+}
+.rmdp-wrapper .rmdp-day-picker {
+  font-family: "v";
+
+}
+
+
+@import url("./style.css");

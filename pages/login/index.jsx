@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import style from "./index.module.css";
 import Swal from "sweetalert2";
-
+import Cookie from "js-cookie";
 // import Icons Start
 
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 
 // import Icons End
+
+// decode
+import jwt_decode from "jwt-decode";
+import Router from "next/router";
 
 const Index = () => {
   const [userName, setUserName] = useState("");
@@ -21,7 +25,7 @@ const Index = () => {
         rememberMe: true,
       };
 
-      fetch("http://62.3/api/v1/Login/login", {
+      fetch("http://62.3.41.67:8090/api/v1/Login/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,16 +35,30 @@ const Index = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.isSuccess == true) {
-            window.localStorage.setItem("token", data.token);
-            data.access.some((item) => {
-              if (item == "Admin") {
-                window.location = "/profile-admin";
-                window.localStorage.setItem("isAdmin", true);
-              } else {
-                window.location = "/profile";
-                window.localStorage.setItem("isAdmin", false);
-              }
-            });
+            const decoded = jwt_decode(data.token);
+
+            window.localStorage.setItem(
+              "token",
+              data.token
+            );
+            window.localStorage.setItem("user", decoded.Id);
+            Cookie.set("token", data.token);
+            Router.push("/");
+            // data.access.some((item) => {
+            //   if (item == "Admin") {
+            //     window.location = "/profile-admin";
+            //     window.localStorage.setItem(
+            //       "isAdmin",
+            //       true
+            //     );
+            //   } else {
+            //     window.location = "/profile";
+            //     window.localStorage.setItem(
+            //       "isAdmin",
+            //       false
+            //     );
+            //   }
+            // });
           } else {
             Swal.fire({
               icon: "error",

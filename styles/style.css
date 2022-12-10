@@ -1,0 +1,61 @@
+.slick-list > div > div > div > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev_icon {
+  position: absolute;
+  top: 0%;
+  left: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.prev_icon > button {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  background-color: white !important;
+  border: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.prev_icon > button > svg {
+  margin-right: -10px;
+}
+
+.next_icon {
+  position: absolute;
+  top: 0%;
+  right: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.next_icon > button {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  background-color: white !important;
+  border: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  box-shadow: 1px 2px 9px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.next_icon > button > svg {
+  margin-left: 0.15rem;
+}

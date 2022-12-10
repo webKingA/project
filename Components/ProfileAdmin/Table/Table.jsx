@@ -28,6 +28,7 @@ const Table = () => {
       <div className={style.information__table}>
         <table>
           <thead className={style.thead}>
+            
             <th>
               <tr>نام کاربر</tr>
               <tr>نام کاربری</tr>

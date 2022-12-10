@@ -23,6 +23,40 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 // import Icons End
 
 import Button from "@mui/material/Button";
+import {
+  days,
+  monthEn,
+  yearsEn,
+  yearPersianData,
+  monthPersianData,
+} from "../../../utils/data";
+// import formik and yup
+import { useFormik } from "formik";
+import * as YUp from "yup";
+import fetchClient from "../../../utils/fetchClient";
+// , February, March, April, May, June, July, August, September, October, November, December.
+// initialValues
+const initialValues = {
+  reserverMobile: "",
+  name: "",
+  lastName: "",
+  latinFirstName: "",
+  latinLastName: "",
+  nationalNumber: "",
+  persianDateOfBirth: "",
+  passportNumber: "",
+  gender: 0,
+  identificationType: 0,
+  age: 0,
+  ageType: "",
+  mobileNumber: "",
+  telNumber: "",
+  passportStartDate: "",
+  passportExpireDate: "",
+  birthDayCountryId: 0,
+  passportCountryId: 0,
+  miladiDatoOfBirth: "",
+};
 
 export default function AddNewTraveller() {
   const [showModalAddNewTraveller, setShowModalAddNewTraveller] =
@@ -113,42 +147,65 @@ export default function AddNewTraveller() {
     }
   };
 
-  function clickSubmitHandler() {
-    let sendData = {
-      // reserverMobile: "string",
-      name: `${name}`,
-      lastName: `${lastname}`,
-      latinFirstName: `${Latinname}`,
-      latinLastName: `${Latinlastname}`,
-      nationalNumber: `${nationalCode}`,
-      persianDateOfBirth: `${year}-${month}-${date}`,
-      // passportNumber: "string",
-      gender: { gender },
-      // identificationType: 0,
-      age: { age },
-      // ageType: "string",
-      // mobileNumber: "string",
-      // telNumber: "string",
-      // passportStartDate: "2022-12-10T09:14:41.486Z",
-      // passportExpireDate: "2022-12-10T09:14:41.486Z",
-      // birthDayCountryId: 0,
-      // passportCountryId: 0,
-      miladiDatoOfBirth: `${year2}-${month2}-${date2}T09:14:41.486Z`,
-    };
+  // function clickSubmitHandler() {
+  //   let sendData = {
+  //     // reserverMobile: "string",
+  //     name: `${name}`,
+  //     lastName: `${lastname}`,
+  //     latinFirstName: `${Latinname}`,
+  //     latinLastName: `${Latinlastname}`,
+  //     nationalNumber: `${nationalCode}`,
+  //     persianDateOfBirth: `${year}-${month}-${date}`,
+  //     // passportNumber: "string",
+  //     gender: { gender },
+  //     // identificationType: 0,
+  //     age: { age },
+  //     // ageType: "string",
+  //     // mobileNumber: "string",
+  //     // telNumber: "string",
+  //     // passportStartDate: "2022-12-10T09:14:41.486Z",
+  //     // passportExpireDate: "2022-12-10T09:14:41.486Z",
+  //     // birthDayCountryId: 0,
+  //     // passportCountryId: 0,
+  //     miladiDatoOfBirth: `${year2}-${month2}-${date2}T09:14:41.486Z`,
+  //   };
 
-    fetch(
-      "http://62.3.41.67:8090/api/CustomerPassengers/createCustomerPassengers",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(sendData),
-      }
-    ).then((res) => console.log(res));
-  }
+  //   fetch(
+  //     "http://62.3.41.67:8090/api/CustomerPassengers/createCustomerPassengers",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //       body: JSON.stringify(sendData),
+  //     }
+  //   ).then((res) => console.log(res));
+  // }
 
+  const [yearPersian, setyearPersian] = useState("");
+  const [monthPersian, setMonthPersian] = useState("");
+  const [dayPersian, setDayPersian] = useState("");
+  const [yearMiladi, setYearMiladi] = useState("");
+  const [monthMiladi, setMonthMiladi] = useState("");
+  const [dayMiladi, setDayMiladi] = useState("");
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit: (values) => {
+      const data = {
+        ...values,
+        persianDateOfBirth: `${yearPersian}-${monthPersian}-${dayPersian}`,
+        passportExpireDate: `${yearMiladi}-${monthMiladi}-${dayMiladi}`,
+      };
+
+      fetchClient
+        .post("/CustomerPassengers/createCustomerPassengers", data)
+        .then((res) => {
+          console.log(res);
+        });
+    },
+  });
   return (
     <section className={style.section2}>
       <div>
@@ -165,7 +222,7 @@ export default function AddNewTraveller() {
             />
           </span>
         </div>
-        <div>
+        <form onSubmit={formik.handleSubmit}>
           <div>
             <span>اطلاعات عمومی</span>
             <span>
@@ -181,8 +238,9 @@ export default function AddNewTraveller() {
                   label="نام فارسی (الزامی)"
                   variant="outlined"
                   style={{ width: "100%" }}
-                  value={name}
-                  onChange={handleName}
+                  name="name"
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
                 />
               </span>
               <span>
@@ -191,56 +249,33 @@ export default function AddNewTraveller() {
                   label="نام خانوادگی فارسی (الزامی)"
                   variant="outlined"
                   style={{ width: "100%" }}
-                  value={lastname}
-                  onChange={handleLastName}
+                  name="lastName"
+                  onChange={formik.handleChange}
+                  value={formik.values.lastName}
                 />
               </span>
               <span>
                 <ButtonGroup
                   variant="contained"
                   aria-label="outlined primary button group"
-                  style={{ width: "100%", fontFamily: "k", fontSize: "14px" }}
+                  style={{
+                    width: "100%",
+                    fontFamily: "k",
+                    fontSize: "14px",
+                  }}
                 >
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">روز</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={date}
                       label="Age"
-                      onChange={handleChangeDate}
+                      value={dayPersian}
+                      onChange={(e) => setDayPersian(e.target.value)}
                     >
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
-                      <MenuItem value={5}>5</MenuItem>
-                      <MenuItem value={6}>6</MenuItem>
-                      <MenuItem value={7}>7</MenuItem>
-                      <MenuItem value={8}>8</MenuItem>
-                      <MenuItem value={9}>9</MenuItem>
-                      <MenuItem value={10}>10</MenuItem>
-                      <MenuItem value={11}>11</MenuItem>
-                      <MenuItem value={12}>12</MenuItem>
-                      <MenuItem value={13}>13</MenuItem>
-                      <MenuItem value={14}>14</MenuItem>
-                      <MenuItem value={15}>15</MenuItem>
-                      <MenuItem value={16}>16</MenuItem>
-                      <MenuItem value={17}>17</MenuItem>
-                      <MenuItem value={18}>18</MenuItem>
-                      <MenuItem value={19}>19</MenuItem>
-                      <MenuItem value={20}>20</MenuItem>
-                      <MenuItem value={21}>21</MenuItem>
-                      <MenuItem value={22}>22</MenuItem>
-                      <MenuItem value={23}>23</MenuItem>
-                      <MenuItem value={24}>24</MenuItem>
-                      <MenuItem value={25}>25</MenuItem>
-                      <MenuItem value={26}>26</MenuItem>
-                      <MenuItem value={27}>27</MenuItem>
-                      <MenuItem value={28}>28</MenuItem>
-                      <MenuItem value={29}>29</MenuItem>
-                      <MenuItem value={30}>30</MenuItem>
-                      <MenuItem value={31}>31</MenuItem>
+                      {days.map((day) => {
+                        <MenuItem value={day.id}>{day.name}</MenuItem>;
+                      })}
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
@@ -248,11 +283,13 @@ export default function AddNewTraveller() {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={month}
                       label="Age"
-                      onChange={handleChangeMonth}
+                      value={monthPersian}
+                      onChange={(e) => setMonthPersian(e.target.value)}
                     >
-                      <MenuItem value={1}>فروردین</MenuItem>
+                      {monthPersianData.map((month) => {
+                        <MenuItem value={month.id}>{month.name}</MenuItem>;
+                      })}
                       <MenuItem value={2}>اردیبهشت</MenuItem>
                       <MenuItem value={3}>خرداد</MenuItem>
                       <MenuItem value={4}>تیر</MenuItem>
@@ -271,20 +308,13 @@ export default function AddNewTraveller() {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={year}
                       label="Age"
-                      onChange={handleChangeYear}
+                      value={yearPersian}
+                      onChange={(e) => setyearPersian(e.target.value)}
                     >
-                      <MenuItem value={1}>1401</MenuItem>
-                      <MenuItem value={2}>1400</MenuItem>
-                      <MenuItem value={3}>1399</MenuItem>
-                      <MenuItem value={4}>1398</MenuItem>
-                      <MenuItem value={5}>1397</MenuItem>
-                      <MenuItem value={6}>1396</MenuItem>
-                      <MenuItem value={7}>1395</MenuItem>
-                      <MenuItem value={8}>1394</MenuItem>
-                      <MenuItem value={9}>1393</MenuItem>
-                      <MenuItem value={10}>1392</MenuItem>
+                      {yearPersianData.map((year) => {
+                        <MenuItem value={year}>{year}</MenuItem>;
+                      })}
                     </Select>
                   </FormControl>
                 </ButtonGroup>
@@ -297,8 +327,9 @@ export default function AddNewTraveller() {
                   label="نام لاتین (الزامی)"
                   variant="outlined"
                   style={{ width: "100%" }}
-                  value={Latinname}
-                  onChange={handleLatinName}
+                  name="latinFirstName"
+                  onChange={formik.handleChange}
+                  value={formik.values.latinFirstName}
                 />
               </span>
               <span>
@@ -307,8 +338,9 @@ export default function AddNewTraveller() {
                   label="نام خانوادگی لاتین (الزامی)"
                   variant="outlined"
                   style={{ width: "100%" }}
-                  value={Latinlastname}
-                  onChange={handleLatinLastName}
+                  name="latinLastName"
+                  onChange={formik.handleChange}
+                  value={formik.values.latinLastName}
                 />
               </span>
               <span>
@@ -317,16 +349,19 @@ export default function AddNewTraveller() {
                   style={{ width: "100%" }}
                 >
                   <Select
-                    value={gender}
-                    onChange={handleChangeGender}
                     displayEmpty
-                    inputProps={{ "aria-label": "Without label" }}
+                    inputProps={{
+                      "aria-label": "Without label",
+                    }}
                     style={{ width: "100%" }}
+                    name="gender"
+                    onChange={formik.handleChange}
+                    value={formik.values.gender}
                   >
-                    <MenuItem value="" style={{ width: "100%" }}>
+                    <MenuItem value={0} style={{ width: "100%" }}>
                       <em>مرد</em>
                     </MenuItem>
-                    <MenuItem value={10} style={{ width: "100%" }}>
+                    <MenuItem value={1} style={{ width: "100%" }}>
                       زن
                     </MenuItem>
                   </Select>
@@ -345,8 +380,9 @@ export default function AddNewTraveller() {
               label="کد ملی"
               variant="outlined"
               style={{ width: "100%" }}
-              value={nationalCode}
-              onChange={handleNationalCode}
+              name="nationalNumber"
+              onChange={formik.handleChange}
+              value={formik.values.nationalNumber}
             />
           </div>
           <div className={style.section4}>
@@ -364,56 +400,33 @@ export default function AddNewTraveller() {
                     label="شماره پاسپورت"
                     variant="outlined"
                     style={{ width: "100%" }}
-                    value={passNumber}
-                    onChange={handlePassNumber}
+                    name="passportNumber"
+                    onChange={formik.handleChange}
+                    value={formik.values.passportNumber}
                   />
                 </span>
                 <span>
                   <ButtonGroup
                     variant="contained"
                     aria-label="outlined primary button group"
-                    style={{ width: "100%", fontFamily: "k", fontSize: "14px" }}
+                    style={{
+                      width: "100%",
+                      fontFamily: "k",
+                      fontSize: "14px",
+                    }}
                   >
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-label">روز</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={date2}
                         label="Age"
-                        onChange={handleChangeDate2}
+                        value={dayMiladi}
+                        onChange={(e) => setDayMiladi(e.target.value)}
                       >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={4}>4</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
-                        <MenuItem value={6}>6</MenuItem>
-                        <MenuItem value={7}>7</MenuItem>
-                        <MenuItem value={8}>8</MenuItem>
-                        <MenuItem value={9}>9</MenuItem>
-                        <MenuItem value={10}>10</MenuItem>
-                        <MenuItem value={11}>11</MenuItem>
-                        <MenuItem value={12}>12</MenuItem>
-                        <MenuItem value={13}>13</MenuItem>
-                        <MenuItem value={14}>14</MenuItem>
-                        <MenuItem value={15}>15</MenuItem>
-                        <MenuItem value={16}>16</MenuItem>
-                        <MenuItem value={17}>17</MenuItem>
-                        <MenuItem value={18}>18</MenuItem>
-                        <MenuItem value={19}>19</MenuItem>
-                        <MenuItem value={20}>20</MenuItem>
-                        <MenuItem value={21}>21</MenuItem>
-                        <MenuItem value={22}>22</MenuItem>
-                        <MenuItem value={23}>23</MenuItem>
-                        <MenuItem value={24}>24</MenuItem>
-                        <MenuItem value={25}>25</MenuItem>
-                        <MenuItem value={26}>26</MenuItem>
-                        <MenuItem value={27}>27</MenuItem>
-                        <MenuItem value={28}>28</MenuItem>
-                        <MenuItem value={29}>29</MenuItem>
-                        <MenuItem value={30}>30</MenuItem>
-                        <MenuItem value={31}>31</MenuItem>
+                        {days.map((day) => {
+                          <MenuItem value={day.id}>{day.name}</MenuItem>;
+                        })}
                       </Select>
                     </FormControl>
                     <FormControl fullWidth>
@@ -421,22 +434,13 @@ export default function AddNewTraveller() {
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={month2}
                         label="Age"
-                        onChange={handleChangeMonth2}
+                        value={monthMiladi}
+                        onChange={(e) => setMonthMiladi(e.target.value)}
                       >
-                        <MenuItem value={1}>فروردین</MenuItem>
-                        <MenuItem value={2}>اردیبهشت</MenuItem>
-                        <MenuItem value={3}>خرداد</MenuItem>
-                        <MenuItem value={4}>تیر</MenuItem>
-                        <MenuItem value={5}>مرداد</MenuItem>
-                        <MenuItem value={6}>شهریور</MenuItem>
-                        <MenuItem value={7}>مهر</MenuItem>
-                        <MenuItem value={8}>آبان</MenuItem>
-                        <MenuItem value={9}>آذر</MenuItem>
-                        <MenuItem value={10}>دی</MenuItem>
-                        <MenuItem value={11}>بهمن</MenuItem>
-                        <MenuItem value={12}>اسفند</MenuItem>
+                        {monthEn.map((month) => {
+                          <MenuItem value={month.id}>{month.name}</MenuItem>;
+                        })}
                       </Select>
                     </FormControl>
                     <FormControl fullWidth>
@@ -444,20 +448,13 @@ export default function AddNewTraveller() {
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={year2}
                         label="Age"
-                        onChange={handleChangeYear2}
+                        value={yearMiladi}
+                        onChange={(e) => setYearMiladi(e.target.value)}
                       >
-                        <MenuItem value={1}>1401</MenuItem>
-                        <MenuItem value={2}>1400</MenuItem>
-                        <MenuItem value={3}>1399</MenuItem>
-                        <MenuItem value={4}>1398</MenuItem>
-                        <MenuItem value={5}>1397</MenuItem>
-                        <MenuItem value={6}>1396</MenuItem>
-                        <MenuItem value={7}>1395</MenuItem>
-                        <MenuItem value={8}>1394</MenuItem>
-                        <MenuItem value={9}>1393</MenuItem>
-                        <MenuItem value={10}>1392</MenuItem>
+                        {yearsEn.map((year) => {
+                          <MenuItem value={year}>{year}</MenuItem>;
+                        })}
                       </Select>
                     </FormControl>
                   </ButtonGroup>
@@ -470,8 +467,10 @@ export default function AddNewTraveller() {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={contry}
-                      onChange={handleContry}
+                      label="کشور صادر کننده پاسپورت"
+                      name="passportCountryId"
+                      onChange={formik.handleChange}
+                      value={formik.values.passportCountryId}
                     >
                       <MenuItem value={1}>ایران</MenuItem>
                       <MenuItem value={2}>ترکیه</MenuItem>
@@ -489,60 +488,61 @@ export default function AddNewTraveller() {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={contry2}
-                      label=""
-                      onChange={handleContry2}
+                      label="کشور صادر کننده پاسپورت"
+                      name="age"
+                      onChange={formik.handleChange}
+                      value={formik.values.age}
                     >
-                      <MenuItem value={1}>ایران</MenuItem>
-                      <MenuItem value={2}>ترکیه</MenuItem>
-                      <MenuItem value={3}>عراق</MenuItem>
+                      <MenuItem value={18}>18</MenuItem>
+                      <MenuItem value={19}>19</MenuItem>
+                      <MenuItem value={20}>20</MenuItem>
                     </Select>
                   </FormControl>
                 </span>
               </div>
             </section>
           </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            gap: "2rem",
-            justifyContent: "end",
-            width: "100%",
-            backgroundColor: "rgba(52, 152, 219,.1)",
-            padding: "1rem 0",
-          }}
-        >
-          <Button
-            variant="outlined"
+          <div
             style={{
-              width: "12rem",
-              padding: "12px",
-              fontFamily: "k",
-              fontSize: "16px",
-              borderRadius: "10px",
-            }}
-            onClick={() => {
-              setShowModalAddNewTraveller(false);
+              display: "flex",
+              gap: "2rem",
+              justifyContent: "end",
+              width: "100%",
+              backgroundColor: "rgba(52, 152, 219,.1)",
+              padding: "1rem 0",
             }}
           >
-            انصراف
-          </Button>
-          <Button
-            variant="contained"
-            style={{
-              width: "12rem",
-              padding: "12px",
-              fontFamily: "k",
-              fontSize: "16px",
-              borderRadius: "10px",
-              marginLeft: "1rem",
-            }}
-            onClick={clickSubmitHandler}
-          >
-            تایید
-          </Button>
-        </div>
+            <Button
+              variant="outlined"
+              style={{
+                width: "12rem",
+                padding: "12px",
+                fontFamily: "k",
+                fontSize: "16px",
+                borderRadius: "10px",
+              }}
+              onClick={() => {
+                setShowModalAddNewTraveller(false);
+              }}
+            >
+              انصراف
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              style={{
+                width: "12rem",
+                padding: "12px",
+                fontFamily: "k",
+                fontSize: "16px",
+                borderRadius: "10px",
+                marginLeft: "1rem",
+              }}
+            >
+              تایید
+            </Button>
+          </div>
+        </form>
       </div>
       <div
         onClick={() => {

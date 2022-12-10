@@ -26,7 +26,7 @@ export default function MenuList({
       color: "#fff",
       fontFamily: "v",
       fontSize: ".90rem",
-      width: "13rem",
+      width: "11rem",
       height: "2.8rem",
       border: 0,
       // This line disable the blue border

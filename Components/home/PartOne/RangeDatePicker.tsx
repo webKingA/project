@@ -3,10 +3,12 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import style from "./PartOne.module.css";
-interface Props{
-  placeholder:string
+interface Props {
+  placeholder: string;
+  value:any;
+  setValue:any
 }
-const RangeDatePicker = ({placeholder}:Props) => {
+const RangeDatePicker = ({ placeholder,value ,setValue}: Props) => {
   return (
     <div>
       <DatePicker
@@ -16,15 +18,16 @@ const RangeDatePicker = ({placeholder}:Props) => {
           borderRadius: "8px",
           fontSize: "14px",
           padding: "3px 10px",
-          fontFamily:"v"
+          fontFamily: "v",
         }}
         buttons={true}
-        disableMonthPicker
-        disableYearPicker
+         
         calendar={persian}
         locale={persian_fa}
         className={`${style.range_date_picker}`}
-      placeholder={placeholder}
+        placeholder={placeholder}
+        value={value}
+        onChange={setValue}
       />
     </div>
   );

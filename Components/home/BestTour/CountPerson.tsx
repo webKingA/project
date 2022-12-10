@@ -5,7 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { countPerson } from "../../../utils/data";
 import { HiLocationMarker } from "react-icons/hi";
 import style from "./BestTour.module.css"
-const Header = () => {
+const CountPerson = () => {
     const [openList, setOpenList] = useState(false);
     const [count, setCount] = useState({
       adultL: 0,
@@ -53,7 +53,7 @@ const Header = () => {
         <p>
           <span>تعداد نفرات</span>
           <span>
-            {/* {count.adultL + count.child + count.baby} */}
+            {count.adultL + count.child + count.baby}
           </span>
         </p>
         <IoIosArrowDown
@@ -77,17 +77,17 @@ const Header = () => {
               >
                 <div>
                   <button
-                    // onClick={() =>
-                    //   decreaseCount(i.count)
-                    // }
+                    onClick={() =>
+                      decreaseCount(i.count)
+                    }
                   >
                     +
                   </button>
                   <p>{counti}</p>
                   <button
-                    // onClick={() =>
-                    //   increaceCount(i.count)
-                    // }
+                    onClick={() =>
+                      increaceCount(i.count)
+                    }
                   >
                     -
                   </button>
@@ -114,4 +114,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default CountPerson

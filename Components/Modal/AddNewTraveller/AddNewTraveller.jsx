@@ -59,10 +59,8 @@ const initialValues = {
 };
 
 export default function AddNewTraveller() {
-  const [
-    showModalAddNewTraveller,
-    setShowModalAddNewTraveller,
-  ] = useRecoilState(ModalAddNewTraveller);
+  const [showModalAddNewTraveller, setShowModalAddNewTraveller] =
+    useRecoilState(ModalAddNewTraveller);
 
   const [yearPersian, setyearPersian] = useState("");
   const [monthPersian, setMonthPersian] = useState("");
@@ -81,10 +79,7 @@ export default function AddNewTraveller() {
       };
 
       fetchClient
-        .post(
-          "/CustomerPassengers/createCustomerPassengers",
-          data
-        )
+        .post("/CustomerPassengers/createCustomerPassengers", data)
         .then((res) => {
           console.log(res);
         });
@@ -111,8 +106,7 @@ export default function AddNewTraveller() {
             <span>اطلاعات عمومی</span>
             <span>
               <IoInformationCircleOutline />
-              اطلاعات مسافران باید کاملا منطبق با مدارک
-              شناسایی‌ باشد.
+              اطلاعات مسافران باید کاملا منطبق با مدارک شناسایی‌ باشد.
             </span>
           </div>
           <section className={style.Section1}>
@@ -150,46 +144,32 @@ export default function AddNewTraveller() {
                   }}
                 >
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      روز
-                    </InputLabel>
+                    <InputLabel id="demo-simple-select-label">روز</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       label="Age"
                       value={dayPersian}
-                      onChange={(e) =>
-                        setDayPersian(e.target.value)
-                      }
+                      onChange={(e) => setDayPersian(e.target.value)}
                     >
-                      {days.map((day) => (
-                        <MenuItem value={day.id}>
-                          {day.name}
-                        </MenuItem>
-                      ))}
+                      {days.map((day) => {
+                        <MenuItem value={day.id}>{day.name}</MenuItem>;
+                      })}
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      ماه
-                    </InputLabel>
+                    <InputLabel id="demo-simple-select-label">ماه</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       label="Age"
                       value={monthPersian}
-                      onChange={(e) =>
-                        setMonthPersian(e.target.value)
-                      }
+                      onChange={(e) => setMonthPersian(e.target.value)}
                     >
-                      {monthPersianData.map((month) => (
-                        <MenuItem value={month.id}>
-                          {month.name}
-                        </MenuItem>
-                      ))}
-                      <MenuItem value={2}>
-                        اردیبهشت
-                      </MenuItem>
+                      {monthPersianData.map((month) => {
+                        <MenuItem value={month.id}>{month.name}</MenuItem>;
+                      })}
+                      <MenuItem value={2}>اردیبهشت</MenuItem>
                       <MenuItem value={3}>خرداد</MenuItem>
                       <MenuItem value={4}>تیر</MenuItem>
                       <MenuItem value={5}>مرداد</MenuItem>
@@ -203,23 +183,17 @@ export default function AddNewTraveller() {
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      سال
-                    </InputLabel>
+                    <InputLabel id="demo-simple-select-label">سال</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       label="Age"
                       value={yearPersian}
-                      onChange={(e) =>
-                        setyearPersian(e.target.value)
-                      }
+                      onChange={(e) => setyearPersian(e.target.value)}
                     >
-                      {yearPersianData.map((year) => (
-                        <MenuItem value={year}>
-                          {year}
-                        </MenuItem>
-                      ))}
+                      {yearPersianData.map((year) => {
+                        <MenuItem value={year}>{year}</MenuItem>;
+                      })}
                     </Select>
                   </FormControl>
                 </ButtonGroup>
@@ -263,16 +237,10 @@ export default function AddNewTraveller() {
                     onChange={formik.handleChange}
                     value={formik.values.gender}
                   >
-                    <MenuItem
-                      value={0}
-                      style={{ width: "100%" }}
-                    >
+                    <MenuItem value={0} style={{ width: "100%" }}>
                       <em>مرد</em>
                     </MenuItem>
-                    <MenuItem
-                      value={1}
-                      style={{ width: "100%" }}
-                    >
+                    <MenuItem value={1} style={{ width: "100%" }}>
                       زن
                     </MenuItem>
                   </Select>
@@ -283,8 +251,8 @@ export default function AddNewTraveller() {
           <div className={style.section3}>
             <p>کد ملی</p>
             <small>
-              کد ملی برای مسافرین ایرانی که قصد سفرهای داخل
-              ایران را دارند مورد نیاز است.
+              کد ملی برای مسافرین ایرانی که قصد سفرهای داخل ایران را دارند مورد
+              نیاز است.
             </small>
             <TextField
               id="outlined-basic"
@@ -299,10 +267,9 @@ export default function AddNewTraveller() {
           <div className={style.section4}>
             <p>اطلاعات پاسپورت</p>
             <small>
-              اطلاعات پاسپورت برای مسافرین ایرانی که قصد سفر
-              های خارجی را دارند و همچنین مسافرین غیرایرانی
-              که قصد استفاده از هر نوع خدماتی را داشته باشند
-              مورد نیاز است.
+              اطلاعات پاسپورت برای مسافرین ایرانی که قصد سفر های خارجی را دارند
+              و همچنین مسافرین غیرایرانی که قصد استفاده از هر نوع خدماتی را
+              داشته باشند مورد نیاز است.
             </small>
             <section className={style.Section1}>
               <div>
@@ -328,63 +295,45 @@ export default function AddNewTraveller() {
                     }}
                   >
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
-                        روز
-                      </InputLabel>
+                      <InputLabel id="demo-simple-select-label">روز</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         label="Age"
                         value={dayMiladi}
-                        onChange={(e) =>
-                          setDayMiladi(e.target.value)
-                        }
+                        onChange={(e) => setDayMiladi(e.target.value)}
                       >
-                        {days.map((day) => (
-                          <MenuItem value={day.id}>
-                            {day.name}
-                          </MenuItem>
-                        ))}
+                        {days.map((day) => {
+                          <MenuItem value={day.id}>{day.name}</MenuItem>;
+                        })}
                       </Select>
                     </FormControl>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
-                        ماه
-                      </InputLabel>
+                      <InputLabel id="demo-simple-select-label">ماه</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         label="Age"
                         value={monthMiladi}
-                        onChange={(e) =>
-                          setMonthMiladi(e.target.value)
-                        }
+                        onChange={(e) => setMonthMiladi(e.target.value)}
                       >
-                        {monthEn.map((month) => (
-                          <MenuItem value={month.id}>
-                            {month.name}
-                          </MenuItem>
-                        ))}
+                        {monthEn.map((month) => {
+                          <MenuItem value={month.id}>{month.name}</MenuItem>;
+                        })}
                       </Select>
                     </FormControl>
                     <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
-                        سال
-                      </InputLabel>
+                      <InputLabel id="demo-simple-select-label">سال</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         label="Age"
                         value={yearMiladi}
-                        onChange={(e) =>
-                          setYearMiladi(e.target.value)
-                        }
+                        onChange={(e) => setYearMiladi(e.target.value)}
                       >
-                        {yearsEn.map((year) => (
-                          <MenuItem value={year}>
-                            {year}
-                          </MenuItem>
-                        ))}
+                        {yearsEn.map((year) => {
+                          <MenuItem value={year}>{year}</MenuItem>;
+                        })}
                       </Select>
                     </FormControl>
                   </ButtonGroup>
@@ -400,9 +349,7 @@ export default function AddNewTraveller() {
                       label="کشور صادر کننده پاسپورت"
                       name="passportCountryId"
                       onChange={formik.handleChange}
-                      value={
-                        formik.values.passportCountryId
-                      }
+                      value={formik.values.passportCountryId}
                     >
                       <MenuItem value={1}>ایران</MenuItem>
                       <MenuItem value={2}>ترکیه</MenuItem>
@@ -414,9 +361,7 @@ export default function AddNewTraveller() {
               <div>
                 <span>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Age
-                    </InputLabel>
+                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"

@@ -33,8 +33,41 @@ export default function AddNewTraveller() {
   const [date, setDate] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
+  const [date2, setDate2] = useState("");
+  const [month2, setMonth2] = useState("");
+  const [year2, setYear2] = useState("");
   const [contry, setContry] = useState("");
   const [contry2, setContry2] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [Latinname, setLatinName] = useState("");
+  const [Latinlastname, setLatinLastName] = useState("");
+  const [nationalCode, setNationalCode] = useState("");
+  const [passNumber, setPassNumber] = useState("");
+
+  const handlePassNumber = (event) => {
+    setPassNumber(event.target.value);
+  };
+
+  const handleNationalCode = (event) => {
+    setNationalCode(event.target.value);
+  };
+
+  const handleLatinLastName = (event) => {
+    setLatinLastName(event.target.value);
+  };
+
+  const handleLatinName = (event) => {
+    setLatinName(event.target.value);
+  };
+
+  const handleLastName = (event) => {
+    setLastName(event.target.value);
+  };
+
+  const handleName = (event) => {
+    setName(event.target.value);
+  };
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -60,9 +93,61 @@ export default function AddNewTraveller() {
     setDate(event.target.value);
   };
 
-  const handleChangeGender = (event) => {
-    setGender(event.target.value);
+  const handleChangeYear2 = (event) => {
+    setYear2(event.target.value);
   };
+
+  const handleChangeMonth2 = (event) => {
+    setMonth2(event.target.value);
+  };
+
+  const handleChangeDate2 = (event) => {
+    setDate2(event.target.value);
+  };
+
+  const handleChangeGender = (event) => {
+    if (e.target.value == "مرد") {
+      setGender(1);
+    } else {
+      setGender(0);
+    }
+  };
+
+  function clickSubmitHandler() {
+    let sendData = {
+      // reserverMobile: "string",
+      name: `${name}`,
+      lastName: `${lastname}`,
+      latinFirstName: `${Latinname}`,
+      latinLastName: `${Latinlastname}`,
+      nationalNumber: `${nationalCode}`,
+      persianDateOfBirth: `${year}-${month}-${date}`,
+      // passportNumber: "string",
+      gender: { gender },
+      // identificationType: 0,
+      age: { age },
+      // ageType: "string",
+      // mobileNumber: "string",
+      // telNumber: "string",
+      // passportStartDate: "2022-12-10T09:14:41.486Z",
+      // passportExpireDate: "2022-12-10T09:14:41.486Z",
+      // birthDayCountryId: 0,
+      // passportCountryId: 0,
+      miladiDatoOfBirth: `${year2}-${month2}-${date2}T09:14:41.486Z`,
+    };
+
+    fetch(
+      "http://62.3.41.67:8090/api/CustomerPassengers/createCustomerPassengers",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(sendData),
+      }
+    ).then((res) => console.log(res));
+  }
 
   return (
     <section className={style.section2}>
@@ -96,6 +181,8 @@ export default function AddNewTraveller() {
                   label="نام فارسی (الزامی)"
                   variant="outlined"
                   style={{ width: "100%" }}
+                  value={name}
+                  onChange={handleName}
                 />
               </span>
               <span>
@@ -104,6 +191,8 @@ export default function AddNewTraveller() {
                   label="نام خانوادگی فارسی (الزامی)"
                   variant="outlined"
                   style={{ width: "100%" }}
+                  value={lastname}
+                  onChange={handleLastName}
                 />
               </span>
               <span>
@@ -208,6 +297,8 @@ export default function AddNewTraveller() {
                   label="نام لاتین (الزامی)"
                   variant="outlined"
                   style={{ width: "100%" }}
+                  value={Latinname}
+                  onChange={handleLatinName}
                 />
               </span>
               <span>
@@ -216,6 +307,8 @@ export default function AddNewTraveller() {
                   label="نام خانوادگی لاتین (الزامی)"
                   variant="outlined"
                   style={{ width: "100%" }}
+                  value={Latinlastname}
+                  onChange={handleLatinLastName}
                 />
               </span>
               <span>
@@ -252,6 +345,8 @@ export default function AddNewTraveller() {
               label="کد ملی"
               variant="outlined"
               style={{ width: "100%" }}
+              value={nationalCode}
+              onChange={handleNationalCode}
             />
           </div>
           <div className={style.section4}>
@@ -269,6 +364,8 @@ export default function AddNewTraveller() {
                     label="شماره پاسپورت"
                     variant="outlined"
                     style={{ width: "100%" }}
+                    value={passNumber}
+                    onChange={handlePassNumber}
                   />
                 </span>
                 <span>
@@ -282,9 +379,9 @@ export default function AddNewTraveller() {
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={date}
+                        value={date2}
                         label="Age"
-                        onChange={handleChangeDate}
+                        onChange={handleChangeDate2}
                       >
                         <MenuItem value={1}>1</MenuItem>
                         <MenuItem value={2}>2</MenuItem>
@@ -324,9 +421,9 @@ export default function AddNewTraveller() {
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={month}
+                        value={month2}
                         label="Age"
-                        onChange={handleChangeMonth}
+                        onChange={handleChangeMonth2}
                       >
                         <MenuItem value={1}>فروردین</MenuItem>
                         <MenuItem value={2}>اردیبهشت</MenuItem>
@@ -347,9 +444,9 @@ export default function AddNewTraveller() {
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={year}
+                        value={year2}
                         label="Age"
-                        onChange={handleChangeYear}
+                        onChange={handleChangeYear2}
                       >
                         <MenuItem value={1}>1401</MenuItem>
                         <MenuItem value={2}>1400</MenuItem>
@@ -367,12 +464,13 @@ export default function AddNewTraveller() {
                 </span>
                 <span>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <InputLabel id="demo-simple-select-label">
+                      کشور صادر کننده پاسپورت
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={contry}
-                      label="کشور صادر کننده پاسپورت"
                       onChange={handleContry}
                     >
                       <MenuItem value={1}>ایران</MenuItem>
@@ -385,12 +483,14 @@ export default function AddNewTraveller() {
               <div>
                 <span>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <InputLabel id="demo-simple-select-label">
+                      کشور صادر کننده پاسپورت
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={contry2}
-                      label="کشور صادر کننده پاسپورت"
+                      label=""
                       onChange={handleContry2}
                     >
                       <MenuItem value={1}>ایران</MenuItem>
@@ -438,6 +538,7 @@ export default function AddNewTraveller() {
               borderRadius: "10px",
               marginLeft: "1rem",
             }}
+            onClick={clickSubmitHandler}
           >
             تایید
           </Button>

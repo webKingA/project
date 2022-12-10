@@ -74,7 +74,7 @@ const Index = () => {
       email: userEmail,
     };
     fetchClient
-      .put("/UserProfile/updateuser", data)
+      .post("/UserProfile/updateuser", data)
       .then((res) => {
         console.log(red);
       });

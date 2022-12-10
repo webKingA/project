@@ -11,6 +11,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 
 // decode
 import jwt_decode from "jwt-decode";
+import Router from "next/router";
 
 const Index = () => {
   const [userName, setUserName] = useState("");
@@ -42,21 +43,22 @@ const Index = () => {
             );
             window.localStorage.setItem("user", decoded.Id);
             Cookie.set("token", data.token);
-            data.access.some((item) => {
-              if (item == "Admin") {
-                window.location = "/profile-admin";
-                window.localStorage.setItem(
-                  "isAdmin",
-                  true
-                );
-              } else {
-                window.location = "/profile";
-                window.localStorage.setItem(
-                  "isAdmin",
-                  false
-                );
-              }
-            });
+            Router.push("/");
+            // data.access.some((item) => {
+            //   if (item == "Admin") {
+            //     window.location = "/profile-admin";
+            //     window.localStorage.setItem(
+            //       "isAdmin",
+            //       true
+            //     );
+            //   } else {
+            //     window.location = "/profile";
+            //     window.localStorage.setItem(
+            //       "isAdmin",
+            //       false
+            //     );
+            //   }
+            // });
           } else {
             Swal.fire({
               icon: "error",

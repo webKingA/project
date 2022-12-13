@@ -4,12 +4,12 @@ import Button from "@mui/material/Button";
 
 import { BsChevronLeft } from "react-icons/bs";
 
-const Partone = () => {
+const Partone = ({user}) => {
   return (
     <div className={style.profile__wrapper__information__first}>
       <span>
         <img src="./images/avatar-edd6c4f8.svg" alt="logo" />
-        09035677011
+       {user?.userName}
       </span>
       <span>
         <p>موجودی حساب</p>

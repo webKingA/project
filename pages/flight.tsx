@@ -10,7 +10,7 @@ const Search = ({ data }: any) => {
       <Header />
       <div className={style.containerCard_search}>
         {data.map((item: any) => (
-          <div className={style.card}>
+          <div className={style.card} key={item.id}>
             <p>{item.airLine}</p>
             <p>{item.terminalNumber}</p>
             <p>{item.startDate}</p>

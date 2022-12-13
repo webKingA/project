@@ -10,11 +10,13 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
+import fetchClient from "../../../../utils/fetchClient";
 
-
-export default function partthree() {
-  const [showModalPersonalInformation, setShowModalPersonalInformation] =
-    useState(false);
+export default function partthree({user}) {
+  const [
+    showModalPersonalInformation,
+    setShowModalPersonalInformation,
+  ] = useState(false);
 
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
@@ -41,13 +43,40 @@ export default function partthree() {
   const handleChangeGender = (event) => {
     setGender(event.target.value);
   };
-  const [userName , setUserName] = useState("")
-  const [userLastName , setUserLastName] = useState("")
-  const [nationalCode , setNationalCode] = useState("")
-  const [nesMobile , setNesMobile] = useState("")
+  const [userName, setUserName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
+  const [nationalCode, setNationalCode] = useState("");
+  const [nesMobile, setNesMobile] = useState("");
+
+  const submitFormInformation = async () => {
+    const id = localStorage.getItem("user");
+    const data = {
+      id: Number(id),
+      userName: "",
+      firstName: userName,
+      lastName: userLastName,
+      email: "",
+      dateOfBirth: `${year}-${month}-${date}`,
+      isAdminEdit: null,
+      phoneNumber: "",
+    };
+
+    try {
+      const {data:updateInformation} = await fetchClient.post(
+        "/UserProfile/updateuser",
+        data
+      );
+
+      console.log(updateInformation)
+    } catch (error) {
+      console.log("errrrrrrrrrrrrrrrrrr")
+    }
+  };
 
   return (
-    <div className={style.profile__wrapper__information__three}>
+    <div
+      className={style.profile__wrapper__information__three}
+    >
       <div>
         <span>
           <FaUserCircle />
@@ -66,7 +95,9 @@ export default function partthree() {
             }}
             startIcon={<GrEdit />}
             onClick={() => {
-              setShowModalPersonalInformation(!showModalPersonalInformation);
+              setShowModalPersonalInformation(
+                !showModalPersonalInformation
+              );
             }}
           >
             ویرایش اطلاعات
@@ -78,7 +109,7 @@ export default function partthree() {
           <div>
             <span>
               نام و نام خانوادگی
-              <small>____</small>
+              <small>{user?.firstName} {user?.lastName}</small>
             </span>
             <span>
               کد ملی
@@ -106,7 +137,9 @@ export default function partthree() {
                 variant="outlined"
                 style={{ width: "100%" }}
                 value={userName}
-                onChange={e => {setUserName(e.target.value)}}
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
               />
             </span>
             <span>
@@ -116,17 +149,25 @@ export default function partthree() {
                 variant="outlined"
                 style={{ width: "100%" }}
                 value={userLastName}
-                onChange={e => {setUserLastName(e.target.value)}}
+                onChange={(e) => {
+                  setUserLastName(e.target.value);
+                }}
               />
             </span>
             <span>
               <ButtonGroup
                 variant="contained"
                 aria-label="outlined primary button group"
-                style={{ width: "100%", fontFamily: "k", fontSize: "14px" }}
+                style={{
+                  width: "100%",
+                  fontFamily: "k",
+                  fontSize: "14px",
+                }}
               >
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">روز</InputLabel>
+                  <InputLabel id="demo-simple-select-label">
+                    روز
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -168,7 +209,9 @@ export default function partthree() {
                   </Select>
                 </FormControl>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">ماه</InputLabel>
+                  <InputLabel id="demo-simple-select-label">
+                    ماه
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -191,7 +234,9 @@ export default function partthree() {
                   </Select>
                 </FormControl>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">سال</InputLabel>
+                  <InputLabel id="demo-simple-select-label">
+                    سال
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -214,7 +259,7 @@ export default function partthree() {
               </ButtonGroup>
             </span>
           </div>
-          <div>
+          {/* <div>
             <span>
               <FormControl
                 sx={{ m: 1, minWidth: 120 }}
@@ -224,13 +269,21 @@ export default function partthree() {
                   value={gender}
                   onChange={handleChangeGender}
                   displayEmpty
-                  inputProps={{ "aria-label": "Without label" }}
+                  inputProps={{
+                    "aria-label": "Without label",
+                  }}
                   style={{ width: "100%" }}
                 >
-                  <MenuItem value="" style={{ width: "100%" }}>
+                  <MenuItem
+                    value=""
+                    style={{ width: "100%" }}
+                  >
                     <em>مرد</em>
                   </MenuItem>
-                  <MenuItem value={10} style={{ width: "100%" }}>
+                  <MenuItem
+                    value={10}
+                    style={{ width: "100%" }}
+                  >
                     زن
                   </MenuItem>
                 </Select>
@@ -243,7 +296,9 @@ export default function partthree() {
                 variant="outlined"
                 style={{ width: "100%" }}
                 value={nationalCode}
-                onChange={e => {setNationalCode(e.target.value)}}
+                onChange={(e) => {
+                  setNationalCode(e.target.value);
+                }}
               />
             </span>
             <span>
@@ -253,10 +308,12 @@ export default function partthree() {
                 variant="outlined"
                 style={{ width: "100%" }}
                 value={nesMobile}
-                onChange={e => {setNesMobile(e.target.value)}}
+                onChange={(e) => {
+                  setNesMobile(e.target.value);
+                }}
               />
             </span>
-          </div>
+          </div> */}
           <div
             style={{
               display: "flex",
@@ -283,6 +340,7 @@ export default function partthree() {
               انصراف
             </Button>
             <Button
+              onClick={() => submitFormInformation()}
               variant="contained"
               style={{
                 width: "12rem",
@@ -290,7 +348,7 @@ export default function partthree() {
                 fontFamily: "k",
                 fontSize: "16px",
                 borderRadius: "10px",
-                marginLeft : "1rem"
+                marginLeft: "1rem",
               }}
             >
               تایید

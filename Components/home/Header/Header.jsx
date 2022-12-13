@@ -54,7 +54,7 @@ const Header = () => {
                 style.list_profile_menu_option
               } ${menuProfile ? style.active : null}`}
             >
-              <Link href="/login">پروفایل کاربری</Link>{" "}
+              <Link href="/profile">پروفایل کاربری</Link>{" "}
               <Link href="/logout">خروج</Link>{" "}
             </div>
           </div>

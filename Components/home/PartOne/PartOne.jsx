@@ -12,7 +12,7 @@ import persian_en from "react-date-object/locales/persian_en";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
-const PartOne = () => {
+const PartOne = ({cities}) => {
   const [selected, setSelected] = useState({
     id: 0,
     name: "fly",
@@ -58,8 +58,8 @@ const PartOne = () => {
       router.push({
         pathname: "/flight",
         query: {
-          origin: origin._id,
-          destination: destination._id,
+          origin: origin.id,
+          destination: destination.id,
           adultL: count.adultL,
           child: count.child,
           baby: count.baby,
@@ -116,6 +116,7 @@ const PartOne = () => {
                     placeholder="مبدا"
                     value={origin}
                     setValue={setOrigin}
+                    cities={cities}
                   />
                   <div
                     onClick={arrowLeftRightLine}
@@ -127,6 +128,7 @@ const PartOne = () => {
                     placeholder="مقصد"
                     value={destination}
                     setValue={setDestination}
+                    cities={cities}
                   />
                 </>
               )}

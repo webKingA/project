@@ -8,21 +8,29 @@ const Search = ({ data }: any) => {
   return (
     <div>
       <Header />
-      <div className={style.containerCard_search}>
-        {data.map((item: any) => (
-          <div className={style.card}>
-            <p>{item.airLine}</p>
-            <p>{item.terminalNumber}</p>
-            <p>{item.startDate}</p>
-            <p>{item.classRefundStatus}</p>
-            <p>{item.infantDiscountPrice}</p>
-            <p>{item.infantTotalPrice}</p>
-            <p>{item.paymentable}</p>
-            <p>{item.paymentableDiscount}</p>
-            <p>{item.classRefundStatus}</p>
-          </div>
-        ))}
-      </div>
+      {!data ? (
+        <h1
+          style={{ fontFamily: "v", textAlign: "center",paddingTop:"160px" }}
+        >
+          موردی یافت نشد
+        </h1>
+      ) : (
+        <div className={style.containerCard_search}>
+          {data?.map((item: any) => (
+            <div className={style.card}>
+              <p>{item.airLine}</p>
+              <p>{item.terminalNumber}</p>
+              <p>{item.startDate}</p>
+              <p>{item.classRefundStatus}</p>
+              <p>{item.infantDiscountPrice}</p>
+              <p>{item.infantTotalPrice}</p>
+              <p>{item.paymentable}</p>
+              <p>{item.paymentableDiscount}</p>
+              <p>{item.classRefundStatus}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -38,22 +46,22 @@ export const getServerSideProps: GetServerSideProps =
       baby,
       originD,
       destinationD,
-      selected,
     } = ctx.query;
+    console.log(ctx.query);
     const data = {
       data: {
         startDate: originD,
-        srcCityId: 4,
-        destCitytId: 6,
+        srcCityId: origin,
+        destCitytId: destination,
         adultQty: adultL,
         childQty: child,
         infantQty: baby,
         isOneway: true,
       },
     };
-    const fetch = axios.create();
+    const fetchAxios = axios.create();
 
-    const res = await fetch.post(
+    const res = await fetchAxios.post(
       `${process.env.BASEURL}/InternalFlight/flightsavailability`,
       data,
       {

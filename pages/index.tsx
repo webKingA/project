@@ -13,10 +13,13 @@ import Footer from "../Components/home/Footer";
 import { GetServerSideProps } from "next";
 import { itemsFooter } from "../utils/data";
 import Slider from "../Components/home/Slider/index";
+import { BASEURL } from "../utils/fetchClient";
 
 // import Component End
-
-export default function Home() {
+interface Props {
+  cities: {}[];
+}
+export default function Home({ cities }: Props) {
   return (
     <div>
       <Head>
@@ -30,7 +33,7 @@ export default function Home() {
 
       <Header />
       <main>
-        <PartOne />
+        <PartOne cities={cities}/>
         <div style={{ width: "80%", margin: "0 auto" }}>
           <BestTour />
         </div>
@@ -57,7 +60,30 @@ export const getServerSideProps: GetServerSideProps =
         },
       };
     }
+    const data = {
+      pageNumber: null,
+      pageSize: null,
+      name: "string",
+      fk_OstanId: null,
+      fk_CountryId: null,
+      isPriority: true,
+    };
+    const getCitys = await fetch(
+      `${BASEURL}/City/getCitys`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    const cities = await getCitys.json();
+
     return {
-      props: {},
+      props: {
+        cities: cities.cityList,
+      },
     };
   };

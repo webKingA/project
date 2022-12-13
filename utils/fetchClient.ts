@@ -1,8 +1,9 @@
 import axios from "axios";
 
+export const BASEURL = "http://62.3.41.67:8090/api";
 const fetchClient = () => {
   const defaultOptions = {
-    baseURL: "http://62.3.41.67:8090/api",
+    baseURL: BASEURL,
     headers: {
       "Content-Type": "application/json",
     },

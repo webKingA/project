@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./AddNewTraveller.module.css";
 import { useRecoilState } from "recoil";
 import { ModalAddNewTraveller } from "../../../state/atoms";
-
+import {createCustomer} from "../../../utils/createCustomer"
 // mui Start
 
 import TextField from "@mui/material/TextField";
@@ -73,21 +73,15 @@ export default function AddNewTraveller() {
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
+    onSubmit:async (values) => {
       const data = {
         ...values,
         persianDateOfBirth: `${yearPersian}-${monthPersian}-${dayPersian}`,
         passportExpireDate: `${yearMiladi}-${monthMiladi}-${dayMiladi}`,
       };
 
-      fetchClient
-        .post(
-          "/CustomerPassengers/createCustomerPassengers",
-          data
-        )
-        .then((res) => {
-          console.log(res);
-        });
+      await createCustomer(data)
+      setShowModalAddNewTraveller(false)
     },
   });
   return (

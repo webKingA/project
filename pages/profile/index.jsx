@@ -40,15 +40,17 @@ import Button from "@mui/material/Button";
 
 // mui End
 
-// axios
-import fetchClient from "../../utils/fetchClient";
+//
+import {
+  updateEmailUser,
+  updatePhoneUser,
+} from "../../utils/editProfile";
+import fetchClient, {
+  BASEURL,
+} from "../../utils/fetchClient";
 
 const Index = () => {
-  useEffect(() => {
-    if (window.localStorage.getItem("token") == null) {
-      window.location = "/login";
-    }
-  }, []);
+  const [user, setUser] = useState([]);
 
   const [showModalEditPass, setShowModalEditPass] =
     useRecoilState(ModalEditPassword);
@@ -65,20 +67,26 @@ const Index = () => {
   const [repeatNewPassword, setRepeatNewPassword] =
     useState("");
 
-  const submitEditEmail = () => {
+  const submitEditEmail = async () => {
     if (!userEmail) return;
     const id = localStorage.getItem("user");
-
-    const data = {
-      id: Number(id),
-      email: userEmail,
-    };
-    fetchClient
-      .post("/UserProfile/updateuser", data)
-      .then((res) => {
-        console.log(red);
-      });
+    await updateEmailUser({ email: userEmail, id });
+    setUserEmail("")
   };
+
+  const editPhoneNumber = async () => {
+    if (!userMobile) return;
+    const id = localStorage.getItem("user");
+    await updatePhoneUser({ phone: userMobile, id });
+    setUserMobile("")
+    setShowModalEditPhoneNumber(false);
+  };
+
+  useEffect(() => {
+    const user = fetchClient
+      .get(`${BASEURL}/UserProfile/currentuser`)
+      .then((response) => setUser(response.data));
+  }, []);
 
   return (
     <div className={style.profile__container}>
@@ -135,9 +143,9 @@ const Index = () => {
         <div
           className={style.profile__wrapper__information}
         >
-          <Partone />
-          <Parttwo />
-          <Partthree />
+          <Partone user={user} />
+          <Parttwo user={user} />
+          <Partthree user={user} />
           <Partfour />
           {showModalEditPass && (
             <div className={style.modalEditPass}>
@@ -263,6 +271,7 @@ const Index = () => {
                   }}
                 />
                 <Button
+                  onClick={() => editPhoneNumber()}
                   style={{
                     width: "450px",
                     padding: "10px",
@@ -286,18 +295,18 @@ const Index = () => {
     </div>
   );
 };
-// export async function getServerSideProps(){
-//    fetch('http://185.164.73.141:8090/api/UserProfile/getuser?id=1',{
-//     method: "GET",
-//     headers:{
-//       token: "berear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3Nmb3JtIjoiZXlKRGJHRnBiWE1pT2x0N0lsUjVjR1VpT2lKaFkyTmxjM05tYjNKdElpd2lWbUZzZFdVaU9pSjBaWE4wTWlKOUxIc2lWSGx3WlNJNkltRmpZMlZ6YzJadmNtMGlMQ0pXWVd4MVpTSTZJbEp2YkdWTllXNWhaMjFsYm5RaWZTeDdJbFI1Y0dVaU9pSmhZMk5sYzNObWIzSnRJaXdpVm1Gc2RXVWlPaUoxYzJWeVRXRnVZV2R0Wlc1MEluMHNleUpVZVhCbElqb2lZV05qWlhOelptOXliU0lzSWxaaGJIVmxJam9pZEdWemRDSjlMSHNpVkhsd1pTSTZJbUZqWTJWemMyWnZjbTBpTENKV1lXeDFaU0k2SWtGa2JXbHVJbjBzZXlKVWVYQmxJam9pWVdOalpYTnpabTl5YlNJc0lsWmhiSFZsSWpvaVFXUnRhVzRpZlN4N0lsUjVjR1VpT2lKaFkyTmxjM05tYjNKdElpd2lWbUZzZFdVaU9pSlNiMnhsVFdGdVlXZHRaVzUwSW4wc2V5SlVlWEJsSWpvaVlXTmpaWE56Wm05eWJTSXNJbFpoYkhWbElqb2lkWE5sY2sxaGJtRm5iV1Z1ZENKOUxIc2lWSGx3WlNJNkltRmpZMlZ6YzJadmNtMGlMQ0pXWVd4MVpTSTZJa0ZrYldsdUluMHNleUpVZVhCbElqb2lZV05qWlhOelptOXliU0lzSWxaaGJIVmxJam9pZFhObGNrMWhibUZuYldWdWRDSjlYWDA9IiwiSWQiOiIxIiwiVE1TIjoiMSIsIkNvV29ya2VyIjoiIiwiSXNIdWJVc2VyIjoiRmFsc2UiLCJJc0N1c3RvbWVyIjoiVHJ1ZSIsIkZ1bGxOYW1lIjoiMDkxMjAxNDg2MDQiLCJuYmYiOjE2Njk4MTA1NTIsImV4cCI6MTY3MDQxNTM1MiwiaWF0IjoxNjY5ODEwNTUyfQ.CK2YaRXeTZhAKQ3ga-lohjjbr-KOlX5K2FWfkjdFml8"
-//     }
-//   }).then(res => res.json()).then(data => console.log(data))
-//
-//   return {
-//     props:{
-//
-//     }
-//   }
-// }
+export async function getServerSideProps(ctx) {
+  const token = ctx.req.cookies["token"];
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 export default Index;

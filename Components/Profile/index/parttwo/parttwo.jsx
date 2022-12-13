@@ -8,7 +8,7 @@ import { HiKey } from "react-icons/hi";
 import { useRecoilState } from "recoil";
 import { ModalEditPassword , ModalEditEmail , ModalEditPhoneNumber } from "./../../../../state/atoms";
 
-const Parttwo = () => {
+const Parttwo = ({user}) => {
   const [showModalEditPass, setShowModalEditPass] =
     useRecoilState(ModalEditPassword);
   const [showModalEditEmail, setShowModalEditEmail] =
@@ -26,7 +26,7 @@ const Parttwo = () => {
       </div>
       <div>
         <span>شماره موبایل</span>
-        <span> 09304144479 </span>
+        <span> {user?.phoneNumber} </span>
         <span>
           <TiTickOutline />
           تایید شده
@@ -50,7 +50,7 @@ const Parttwo = () => {
       </div>
       <div>
         <span>
-          <p>ایمیل</p>
+          <p>ایمیل {user?.email}</p>
           <Button
             size="medium"
             style={{

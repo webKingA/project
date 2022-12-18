@@ -199,16 +199,8 @@ export default function AddNewTraveller() {
         passportExpireDate: `${yearMiladi}-${monthMiladi}-${dayMiladi}`,
       };
 
-<<<<<<< HEAD
-      fetchClient
-        .post("/CustomerPassengers/createCustomerPassengers", data)
-        .then((res) => {
-          console.log(res);
-        });
-=======
       await createCustomer(data)
       setShowModalAddNewTraveller(false)
->>>>>>> 3e4e9655104631dd2c4c6f9459b2b58b0fe420a2
     },
   });
   return (

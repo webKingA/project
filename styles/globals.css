@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @font-face {
   font-family: "k";
   src: url("./../public/fonts/Kalameh\(FaNum\)-Bold.ttf");
@@ -5,9 +8,22 @@
 
 @font-face {
   font-family: "v";
-  src: url("./../public/fonts/Vazirmatn-Medium.ttf");
+  src: url("../public/fonts/Vazirmatn-Medium.ttf");
+}
+@font-face {
+  font-family: "IRANYekanRegular";
+  src: url("../public/font/IRANYekanRegular.ttf");
 }
 
+@font-face {
+  font-family: "IRANYekanMedium";
+  src: url("../public/font/IRANYekanMedium.ttf");
+}
+
+@font-face {
+  font-family: "IRANYekanBold";
+  src: url("../public/font/IRANYekanBold.ttf");
+}
 * {
   margin: 0;
   padding: 0;
@@ -28,13 +44,337 @@ img {
   display: none;
 }
 
-.rmdp-wrapper .rmdp-header-values{
+.rmdp-wrapper .rmdp-header-values {
   font-family: "v";
 }
 .rmdp-wrapper .rmdp-day-picker {
   font-family: "v";
-
 }
 
-
 @import url("./style.css");
+@import url("./main.css");
+
+.active-collapse {
+  background: linear-gradient(
+    270deg,
+    rgba(116, 70, 178, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  position: relative;
+}
+
+.active-collapse::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 9px;
+  width: 4px;
+  height: 42px;
+  border-radius: 4px 0px 0px 4px;
+  @apply bg-[#3498db];
+}
+
+.has-badge-error {
+  @apply relative;
+}
+
+.has-badge-error::before {
+  @apply absolute right-[2px] top-[2px] w-[10px] h-[10px] border-2 border-white rounded-full bg-error;
+  content: "";
+}
+
+.file-manager .space-list {
+  @apply h-full;
+}
+
+input.dp__input {
+  direction: rtl !important;
+}
+
+.rdp__modal .eKcXbM {
+  max-height: 100% !important;
+}
+
+/* hide mui progress bar */
+.MuiCircularProgress-root {
+  @apply !hidden;
+}
+
+input.dp__input {
+  direction: rtl !important;
+}
+
+.rdp__modal .eKcXbM {
+  max-height: 100% !important;
+}
+
+.podspace-folder .MuiBox-root {
+  @apply !relative;
+}
+/* hide mui progress bar */
+
+@layer utilities {
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply rounded-full bg-base-200;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-gray-300 border;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  }
+
+  .repo-publish__form .sc-kgoBCf .sc-EHOje {
+    min-height: 70px;
+  }
+
+  .repo-publish__form .sc-kgoBCf .sc-EHOje .sc-bZQynM {
+    font-size: 12px;
+  }
+
+  .repo-publish__form .sc-kgoBCf .sc-EHOje .sc-gzVnrw {
+    font-size: 12px;
+    /* background: RGB(214, 214, 214); */
+    padding: 4px 20px;
+    @apply bg-[#3498db];
+  }
+
+  .repo-publish__form .sc-kgoBCf .sc-VigVT .bgHcYY {
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 30px;
+    max-height: 30px;
+    margin-bottom: 10px;
+  }
+
+  .repo-publish__form .sc-kgoBCf .sc-VigVT .bgHcYY li {
+    height: auto;
+  }
+
+  .repo-publish__form .sc-kgoBCf .sc-VigVT .etVCQU {
+    height: 40px;
+  }
+
+  .repo-publish__form .sc-kgoBCf .sc-VigVT .etVCQU li {
+    height: auto;
+    margin-bottom: 0;
+  }
+
+  .repo-publish__form .rdp__buttons button {
+    padding: 8px;
+    font-size: 12px;
+    @apply bg-[#3498db] text-white hover:bg-[#3498db] hover:text-white mt-4;
+  }
+
+  .repo-publish__form .dp__input {
+    @apply focus:outline-none;
+  }
+  .toggle:checked {
+    background: "red";
+  }
+}
+
+@layer components {
+  .textarea {
+    @apply p-2  min-h-0 h-auto rounded;
+  }
+  .select {
+    @apply rounded;
+  }
+  .checkbox {
+    @apply rounded-[3px];
+  }
+  .checkbox:checked,
+  .checkbox[checked="true"] {
+    background-image: linear-gradient(
+        -45deg,
+        transparent 65%,
+        hsl(var(--chkbg)) 65.99%
+      ),
+      linear-gradient(
+        45deg,
+        transparent 75%,
+        hsl(var(--chkbg)) 75.99%
+      ),
+      linear-gradient(
+        -45deg,
+        hsl(var(--chkbg)) 40%,
+        transparent 40.99%
+      ),
+      linear-gradient(
+        45deg,
+        hsl(var(--chkbg)) 30%,
+        #fff 30.99%,
+        #fff 40%,
+        transparent 40.99%
+      ),
+      linear-gradient(
+        -45deg,
+        #fff 50%,
+        hsl(var(--chkbg)) 50.99%
+      );
+  }
+  .checkbox-text {
+    @apply font-normal text-sm text-base-300;
+  }
+  .modal-box {
+    @apply rounded-lg w-full bg-white p-5;
+  }
+  .modal-title {
+    @apply text-base font-yekan-regular font-normal text-base-content;
+  }
+  .menu li {
+    @apply rounded-[4px];
+  }
+  .menu li :is(div, a, button) {
+    @apply text-[13px] font-yekan-regular font-normal text-base-content hover:!bg-neutral-content;
+  }
+  .menu
+    :where(li:not(.menu-title):not(:empty))
+    > :where(:not(ul):active) {
+    @apply bg-neutral-content;
+  }
+  .modal-action > :not([hidden]) ~ :not([hidden]) {
+    @apply m-0;
+  }
+  .modal-action {
+    @apply justify-start gap-x-[10px];
+  }
+  .modal-action .modal-btn-success {
+    @apply bg-[#3498db] leading-[22px] hover:bg-[#3498db] px-[23px] py-[9px];
+  }
+  .modal-action .modal-btn-cancel {
+    @apply bg-transparent text-[#3498db] hover:bg-[#3498db] hover:text-white leading-[22px] px-[19px] py-[9px];
+  }
+  .tab-lifted.tab-active {
+    @apply bg-base-300;
+  }
+  .tabs-boxed {
+    @apply bg-transparent rounded-none border-b-[1px] border-b-gray-300 p-0 pt-4;
+  }
+  .tabs-boxed .tab {
+    @apply block text-sm font-yekan-medium font-normal rounded-none text-base-200 leading-4 px-[15px];
+  }
+  .tabs-boxed .tab-active {
+    @apply bg-transparent text-[#3498db] hover:text-[#3498db] border-b-[3px] border-b-[#3498db];
+  }
+  .btn {
+    @apply rounded-[4px] py-[11px] px-3 h-fit font-yekan-medium font-normal text-[13px] min-h-fit outline-none border-none;
+  }
+  .btn:active:hover,
+  .btn:active:focus {
+    @apply transform-none;
+  }
+  label {
+    @apply text-sm text-gray-500 font-yekan-regular font-normal;
+  }
+  .input,
+  .select {
+    @apply bg-transparent px-[15px] py-[9px] rounded-[4px] focus:px-[15px] focus:outline-none text-[13px] font-yekan-regular font-normal text-base-content placeholder:text-base-100 w-full;
+  }
+  .select {
+    background-image: url("data:image/svg+xml;utf8,<svg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.175 0.149902L5 3.9749L8.825 0.149902L10 1.33324L5 6.33324L0 1.33324L1.175 0.149902Z' fill='rgb(145,145,145)'/></svg>");
+    background-position-x: 15px;
+    background-size: 10px;
+    @apply rounded-sm bg-no-repeat appearance-none;
+  }
+  .title {
+    @apply font-yekan-regular font-normal text-lg text-base-content;
+  }
+
+  .custom-table {
+    @apply text-right rounded-[4px];
+  }
+
+  .custom-table th {
+    @apply text-[13px] text-white font-yekan-bold bg-[#3498db]
+  }
+  .custom-table td {
+    @apply text-sm font-yekan-regular text-base-200;
+  }
+  .custom-table :is(th, td) {
+    @apply px-5 py-4 border-b-[1px]  border-b-gray-200 font-normal;
+  }
+  .custom-table.category-table {
+    @apply cursor-pointer relative;
+  }
+  .custom-table tr td:first-child {
+    @apply relative;
+  }
+  .custom-table.category-table tr td:first-child::before {
+    content: "";
+    @apply absolute right-0 top-2/4 -translate-y-2/4 h-[42px] w-1 bg-[#3498db] rounded-tl-[4px] rounded-bl-[4px] hidden;
+  }
+  .custom-table tr:focus-within td {
+    @apply text-[#3498db];
+  }
+  .custom-table tr:focus-within td:first-child::before {
+    @apply block;
+  }
+  .custom-table tr :is(td, th):last-child {
+    @apply text-left;
+  }
+
+  .file-manager .space-list {
+    @apply relative border-b-0;
+  }
+  .file-manager .podspace-upload-button {
+    @apply relative;
+  }
+  .file-manager .space-main-container {
+    @apply bg-white p-0;
+  }
+  .file-manager table {
+    @apply m-0 p-0;
+  }
+  .file-manager table :is(td, th) {
+    @apply text-right px-5;
+  }
+  .file-manager table tbody td {
+    @apply py-3;
+  }
+  .file-manager table thead tr {
+    @apply h-12;
+  }
+  .file-manager thead td {
+    @apply font-yekan-bold font-normal text-[13px] text-base-200 leading-3;
+  }
+  .file-manager thead td:last-child {
+    @apply text-left;
+  }
+  .file-manager thead td:last-child::before {
+    content: "عملیات";
+    @apply text-left;
+  }
+  .file-manager tbody td {
+    @apply font-yekan-regular font-normal text-sm text-base-200;
+  }
+  .file-manager tbody tr td:last-child {
+    @apply flex justify-end;
+  }
+  .file-manager tbody tr td:first-child img {
+    @apply !mr-0 !ml-[13px];
+  }
+  .file-manager tbody td small {
+    @apply text-sm;
+  }
+  .file-manager tbody .FileList-actionButton-25 {
+    @apply p-0;
+  }
+  .file-manager tbody .selected-file {
+    @apply bg-neutral-content;
+  }
+  .file-manager .podspace-upload-button {
+    @apply hidden;
+  }
+  .repo-publish__form > .rdp__modal {
+    @apply bg-red-400;
+  }
+}

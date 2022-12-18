@@ -359,3 +359,32 @@ export const monthPersianData = [
     name: "اسفند",
   },
 ];
+
+
+export const menuItemAdminPanel = [
+  {
+    id:1,
+    name:"مدیریت کاربران",
+    route:"/profile-admin"
+  },
+  {
+    id:2,
+    name:"مدیریت نقش ها",
+    route:"/profile-admin/roleManage"
+  },
+  {
+    id:3,
+    name:" پرواز های داخلی",
+    route:"/profile-admin/internal-flight"
+  },
+  {
+    id:4,
+    name:"مغایرت گیری",
+    route:"/profile-admin/conflicts"
+  },
+  {
+    id:5,
+    name:"گزارش گیری",
+    route:"/profile-admin/reports"
+  },
+]

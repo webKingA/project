@@ -1,0 +1,36 @@
+.input {
+	border: 2px solid #fff;
+	text-align: center;
+	background-color: transparent;
+	color: #fff;
+	height: 45px;
+	font-size: 14px;
+	padding-left: 14px;
+	padding-right: 14px;
+	border-radius: 5px;
+	transition: background-color 0.15s ease-in-out;
+
+	&:focus {
+		background-color: #ffffff1a;
+		border-color: #fff;
+	}
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	&::placeholder {
+		color: #fff;
+		opacity: 0.75;
+	}
+}
+
+.disabled {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: copy;
+	filter: contrast(0.7);
+	opacity: 0.6;
+	color: #fff;
+}

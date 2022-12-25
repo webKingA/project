@@ -1,5 +1,5 @@
 import React, { useState,  } from "react";
-import { PlusIcon, XIcon } from "../../assets/svg";
+import { PlusIcon, XIcon } from "../../public/svg";
 import { IUser } from "../../interface/users.interface";
 import AccessComponent from "./accessComponent";
 interface IProps {

@@ -1,0 +1,20 @@
+.rmdp-wrapper {
+	&.mobile-mode {
+		width: 380px;
+
+		.rmdp-calendar,
+		.rmdp-day-picker {
+			width: 100%;
+			display: block !important;
+		} // .rmdp-day-picker
+
+		.rmdp-day {
+			width: 49px;
+			height: 49px;
+		} // .rmdp-day
+
+		.rmdp-week-day {
+			width: 49px;
+		}
+	} // &.mobile-mode
+} // .rmdp-wrapper

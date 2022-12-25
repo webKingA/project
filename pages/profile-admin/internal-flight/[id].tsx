@@ -13,7 +13,7 @@ const Details = ({id}:any) => {
       {flightReserveObj?.data?.flightPassengersList.map(
         (item: IFlightPassengers) => {
           return (
-            <div className="w-full overflow-hidden bg-[#fff] m-7 p-5 drop-shadow-[0px_2px_3px_rgba(0,0,0,0.07)] rounded-[4px]">
+            <div key={item.id} className="w-full overflow-hidden bg-[#fff] m-7 p-5 drop-shadow-[0px_2px_3px_rgba(0,0,0,0.07)] rounded-[4px]">
               <table className="custom-table flight-table table-fixed w-full ">
                 <thead className="bg-primary bg-opacity-[0.15]">
                   <tr>

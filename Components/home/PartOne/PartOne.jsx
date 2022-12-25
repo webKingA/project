@@ -4,15 +4,16 @@ import Slider from "./Slider";
 import { flyItems } from "../../../utils/data";
 import SelectList from "./SelectList";
 import { RiArrowLeftRightLine } from "react-icons/ri";
-import RangeDatePicker from "./RangeDatePicker";
 import CountPerson from "./CountPerson";
 import { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_en from "react-date-object/locales/persian_en";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import RangeDatePicker from "./rangeDatePicker/RangeDatePicker";
+import FlightDatePicker from "./flightDatePicker";
 
-const PartOne = ({cities}) => {
+const PartOne = ({ cities }) => {
   const [selected, setSelected] = useState({
     id: 0,
     name: "fly",
@@ -20,10 +21,24 @@ const PartOne = ({cities}) => {
   });
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
+  const [dropdownState, setDropdownState] =
+    useState(undefined);
+  const [flightRoute, setFlightRoute] = useState([
+    {
+      label: "یک طرفه",
+      value: "oneway",
+    },
+    {
+      label: "دو طرفه",
+      value: "twoway",
+    },
+  ]);
+
   const [datePicker, setDatePicker] = useState({
     originDate: null,
     destinationDate: null,
   });
+  const [value, setValue] = useState(null);
   const [count, setCount] = useState({
     adultL: 1,
     child: 0,
@@ -134,17 +149,8 @@ const PartOne = ({cities}) => {
               )}
             </div>
             <div className={style.range_date_container}>
-              <RangeDatePicker
-                value={datePicker.originDate}
-                setValue={(value) =>
-                  setDatePicker({
-                    ...datePicker,
-                    originDate: value,
-                  })
-                }
-                placeholder="تاریخ رفت"
-              />
-              <RangeDatePicker
+              <FlightDatePicker/>
+              {/* <RangeDatePicker
                 value={datePicker.destinationDate}
                 setValue={(value) =>
                   setDatePicker({
@@ -153,7 +159,7 @@ const PartOne = ({cities}) => {
                   })
                 }
                 placeholder="تاریخ برگشت"
-              />
+              /> */}
             </div>
             <CountPerson
               count={count}

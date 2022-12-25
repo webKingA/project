@@ -8,23 +8,6 @@ const Search = ({ data }: any) => {
   return (
     <div>
       <Header />
-<<<<<<< HEAD
-      <div className={style.containerCard_search}>
-        {data.map((item: any) => (
-          <div className={style.card} key={item.id}>
-            <p>{item.airLine}</p>
-            <p>{item.terminalNumber}</p>
-            <p>{item.startDate}</p>
-            <p>{item.classRefundStatus}</p>
-            <p>{item.infantDiscountPrice}</p>
-            <p>{item.infantTotalPrice}</p>
-            <p>{item.paymentable}</p>
-            <p>{item.paymentableDiscount}</p>
-            <p>{item.classRefundStatus}</p>
-          </div>
-        ))}
-      </div>
-=======
       {!data ? (
         <h1
           style={{ fontFamily: "v", textAlign: "center",paddingTop:"160px" }}
@@ -34,7 +17,7 @@ const Search = ({ data }: any) => {
       ) : (
         <div className={style.containerCard_search}>
           {data?.map((item: any) => (
-            <div className={style.card}>
+            <div className={style.card} key={item.id}>
               <p>{item.airLine}</p>
               <p>{item.terminalNumber}</p>
               <p>{item.startDate}</p>
@@ -48,7 +31,6 @@ const Search = ({ data }: any) => {
           ))}
         </div>
       )}
->>>>>>> 3e4e9655104631dd2c4c6f9459b2b58b0fe420a2
     </div>
   );
 };

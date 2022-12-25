@@ -51,15 +51,7 @@ export default function Home({ cities }: Props) {
 
 export const getServerSideProps: GetServerSideProps =
   async (ctx) => {
-    const token = ctx.req.cookies["token"];
-    if (!token) {
-      return {
-        redirect: {
-          destination: "/login",
-          permanent: false,
-        },
-      };
-    }
+ 
     const data = {
       pageNumber: null,
       pageSize: null,
@@ -74,7 +66,6 @@ export const getServerSideProps: GetServerSideProps =
         method: "POST",
         headers: {
           "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(data),
       }

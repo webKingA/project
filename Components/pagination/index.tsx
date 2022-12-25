@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "../../assets/svg";
+import { ChevronLeftIcon, ChevronRightIcon } from "./../../public/svg";
 
 interface IProps {
 	pageProps?:number;

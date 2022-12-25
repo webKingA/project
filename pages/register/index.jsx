@@ -2,30 +2,33 @@ import React, { useState } from "react";
 import style from "./index.module.css";
 import Swal from "sweetalert2";
 import Cookie from "js-cookie";
+
 // import Icons Start
 
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { BsFillTelephoneFill } from "react-icons/bs";
 
 // import Icons End
 
-// decode
-import jwt_decode from "jwt-decode";
-import Router from "next/router";
-
 const Index = () => {
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  function clickLoginHandler() {
-    if (userName.length != 0 && password.length != 0) {
+  function clickRegisterHandler() {
+    if (
+      username.length != 0 &&
+      password.length != 0 &&
+      confirmPassword.length != 0
+    ) {
       let data = {
-        username: userName,
+        username: username,
         password: password,
-        rememberMe: true,
+        confirmPassword: confirmPassword,
       };
 
-      fetch("http://62.3.41.67:8090/api/v1/Login/login", {
+      fetch("http://62.3.41.67:8090/api/Register/registeruser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,43 +43,43 @@ const Index = () => {
             window.localStorage.setItem("token", data.token);
             window.localStorage.setItem("user", decoded.Id);
             Cookie.set("token", data.token);
-            data.access.some((item) => {
-              if (item == "Admin") {
-                Router.push("/profile-admin");
-              } else {
-                Router.push("/profile");
-              }
+            Router.push("/");
+
+            Swal.fire({
+              icon: "success",
+              text: "ثبت نام شما موفقیت آمیز بود",
             });
           } else {
             Swal.fire({
               icon: "error",
-              text: "نام کاربری یا کلمه عبور وارد شده صحیح نمیباشد!!!",
+              text: "مقادیر وارد شده صحیح نمیباشد!!!",
             });
           }
         });
 
-      setUserName("");
+      setUsername("");
       setPassword("");
+      setConfirmPassword("");
     } else {
       Swal.fire({
         icon: "error",
-        text: "برای لاگین نیاز است نام کاربری و کلمه عبور خود را وارد کنید!!!!",
+        text: "لطفا تمامی موارد را وارد نمایید !!!",
       });
     }
   }
 
   return (
-    <div className={style.login__container}>
+    <div className={style.register__container}>
       <div className={style.overlay}></div>
-      <div className={style.login__wrappper}>
-        <h3>ورود</h3>
+      <div className={style.register__wrappper}>
+        <h3>ثبت نام</h3>
         <span>
           <AiOutlineUser />
           <input
             type="text"
             placeholder="نام کاربری :"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </span>
         <span>
@@ -88,7 +91,16 @@ const Index = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </span>
-        <button onClick={clickLoginHandler}>ورود</button>
+        <span>
+          <RiLockPasswordLine />
+          <input
+            type="password"
+            placeholder="تکرار رمز عبور :‌"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </span>
+        <button onClick={clickRegisterHandler}>ثبت نام</button>
       </div>
     </div>
   );

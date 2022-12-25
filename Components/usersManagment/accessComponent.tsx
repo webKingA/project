@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { aclSchema } from "./validation.yup";
-import { PlusIcon, XIcon } from "../../assets/svg";
+import { PlusIcon, XIcon } from "../../public/svg";
 import { IUser } from "../../interface/users.interface";
 import { EAccess, sampleListAccess } from "../../interface/enum";
 import useAddAccess from "../../hooks/accessManagment/useAddAccess";
@@ -113,9 +113,9 @@ const AccessComponent = (props: IProps) => {
 		{isLoading && <div className="spinner" />}
 		</div>
 		<div className="flex flex-wrap mt-8">
-		{sampleListAccess.map((item) => {
+		{sampleListAccess.map((item , index) => {
 		return (
-			<div className="flex items-center mx-3 my-3">
+			<div className="flex items-center mx-3 my-3" key={index}>
 			<label className="label">
 				<input
 				type="checkbox"

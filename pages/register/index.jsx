@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./index.module.css";
 import Swal from "sweetalert2";
 import Cookie from "js-cookie";
-
+import { useRouter } from "next/router";
 // import Icons Start
 
 import { AiOutlineUser } from "react-icons/ai";
@@ -14,7 +14,9 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 const Index = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] =
+    useState("");
+  const router = useRouter();
 
   function clickRegisterHandler() {
     if (
@@ -28,22 +30,28 @@ const Index = () => {
         confirmPassword: confirmPassword,
       };
 
-      fetch("http://62.3.41.67:8090/api/Register/registeruser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
+      fetch(
+        "http://62.3.41.67:8090/api/Register/registeruser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
-          if (data.isSuccess == true) {
-            const decoded = jwt_decode(data.token);
+          if (data.result.succeeded) {
+            // const decoded = jwt_decode(data.token);
 
-            window.localStorage.setItem("token", data.token);
-            window.localStorage.setItem("user", decoded.Id);
-            Cookie.set("token", data.token);
-            Router.push("/");
+            // window.localStorage.setItem(
+            //   "token",
+            //   data.token
+            // );
+            // window.localStorage.setItem("user", decoded.Id);
+            // Cookie.set("token", data.token);
+            router.push("/");
 
             Swal.fire({
               icon: "success",
@@ -97,10 +105,14 @@ const Index = () => {
             type="password"
             placeholder="تکرار رمز عبور :‌"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) =>
+              setConfirmPassword(e.target.value)
+            }
           />
         </span>
-        <button onClick={clickRegisterHandler}>ثبت نام</button>
+        <button onClick={clickRegisterHandler}>
+          ثبت نام
+        </button>
       </div>
     </div>
   );

@@ -59,8 +59,9 @@ const Header = () => {
             </div>
           </div>
         ) : (
+          <>
           <Link href="/login">
-            <Button
+            {/* <Button
               variant="contained"
               style={{
                 padding: "5px 20px",
@@ -73,8 +74,29 @@ const Header = () => {
               }}
             >
               ورود
-            </Button>
+            </Button> */}
+            ورود
+    
           </Link>
+          <Link href="/register">
+          {/* <Button
+              variant="contained"
+              style={{
+                padding: "5px 20px",
+                borderRadius: "35px 10px",
+                fontFamily: "k",
+                fontSize: "11px",
+                cursor: "pointer",
+                backgroundColor: "#e74c3c",
+                color: "#fff",
+              }}
+            >
+              ثبت نام
+            </Button> */}
+            ثبت نام
+    
+          </Link>
+          </>
         )}
 
         <Link href="#">

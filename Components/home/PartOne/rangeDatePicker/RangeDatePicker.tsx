@@ -1,8 +1,10 @@
 import { memo, useEffect, useRef, useState } from "react";
 import gregorian from "react-date-object/calendars/gregorian";
 import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 import DatePicker from "react-multi-date-picker";
 
+import { Tooltip } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 import Inputs from "./Inputs";
@@ -83,29 +85,25 @@ const RangeDatePicker = ({
 
     // privent close datepicker when click on input element
     if (
-      target.closest("js-date-range-picker") &&
+      target.closest(".js-date-range-picker") &&
       !target.classList.contains("btn-close-calendar")
     )
       return;
 
-    // setShouldCloseCalendar(true);
+    setShouldCloseCalendar(true);
 
     setTimeout(() => {
       ref.current?.closeCalendar();
       setShouldCloseCalendar(false);
-    }, 1000000);
+    }, 10);
   };
 
   // Event For handleClickOutside
   useEffect(() => {
-    window.addEventListener("click", handleClickOutside);
-
-    return () => {
-      window.removeEventListener(
-        "click",
-        handleClickOutside
-      );
-    };
+    // window.addEventListener('click', handleClickOutside);
+    // return () => {
+    // 	window.removeEventListener('click', handleClickOutside);
+    // };
   }, []);
 
   return (
@@ -128,6 +126,35 @@ const RangeDatePicker = ({
             }}
           />
         }
+        mapDays={({ date, selectedDate }) => {
+          if (smScreen) return;
+          let TooltipText = "";
+
+          if (
+            Array.isArray(selectedDate) &&
+            selectedDate.length === 1
+          ) {
+            TooltipText = "تاریخ برگشت";
+          } else {
+            TooltipText = "تاریخ رفت";
+          }
+
+          return {
+            children: (
+              <Tooltip
+                label={TooltipText}
+                withArrow
+                arrowSize={4}
+                position="top"
+                // placement="center"
+                transition="pop"
+                transitionDuration={150}
+              >
+                <p>{date.format("D")}</p>
+              </Tooltip>
+            ),
+          };
+        }}
         value={value}
         ref={ref}
         format={
@@ -140,7 +167,7 @@ const RangeDatePicker = ({
         }
         locale={
           dateType === "persian"
-            ? _PersianLocal
+            ? persian_fa
             : _GregorianLocal
         }
         minDate={
@@ -155,7 +182,7 @@ const RangeDatePicker = ({
         }`}
         onChange={setValue}
         onClose={() => {
-        //   ref.current?.classList.remove("open");
+          ref.current?.classList.remove("open");
 
           return shouldCloseCalendar;
         }}
@@ -164,16 +191,43 @@ const RangeDatePicker = ({
             onOpenDatePicker &&
             onOpenDatePicker instanceof Function
           ) {
-            // onOpenDatePicker(ref.current as HTMLElement);
+            onOpenDatePicker(ref.current as HTMLElement);
           }
 
-        //   ref.current?.classList.add("open");
+          ref.current?.classList.add("open");
         }}
         calendarPosition="bottom-center"
         fixMainPosition
         disableYearPicker
         disableMonthPicker
         hideYear
+        plugins={[
+          <Header
+            position="top"
+            dateType={dateType}
+            setDateType={setDateType}
+            key="header"
+          />,
+          <Footer
+            position="bottom"
+            key="footer"
+            closeFun={() => {
+              setShouldCloseCalendar(true);
+
+              setTimeout(() => {
+                ref.current?.closeCalendar();
+                setShouldCloseCalendar(false);
+
+                if (
+                  onAfterCloseDatePicker &&
+                  onAfterCloseDatePicker instanceof Function
+                ) {
+                  onAfterCloseDatePicker();
+                }
+              }, 10);
+            }}
+          />,
+        ]}
         offsetY={-4}
       />
     </>

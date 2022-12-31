@@ -1,9 +1,8 @@
 import axios from "axios";
 
-export const process.env,BASEURL = "http://62.3.41.67:8090/api";
 const fetchClient = () => {
   const defaultOptions = {
-    process.env,BASEURL: process.env,BASEURL,
+    baseURL: process.env.BASEURL,
     headers: {
       "Content-Type": "application/json",
     },

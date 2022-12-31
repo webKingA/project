@@ -62,7 +62,7 @@ export const getServerSideProps: GetServerSideProps =
     const fetchAxios = axios.create();
 
     const res = await fetchAxios.post(
-      `${process.env.process.env,BASEURL}/InternalFlight/flightsavailability`,
+      `${process.env.BASEURL}/InternalFlight/flightsavailability`,
       data,
       {
         headers: {

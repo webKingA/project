@@ -13,7 +13,6 @@ import Footer from "../Components/home/Footer";
 import { GetServerSideProps } from "next";
 import { itemsFooter } from "../utils/data";
 import Slider from "../Components/home/Slider/index";
-import { process.env,BASEURL } from "../utils/fetchClient";
 
 // import Component End
 interface Props {
@@ -61,7 +60,7 @@ export const getServerSideProps: GetServerSideProps =
       isPriority: true,
     };
     const getCitys = await fetch(
-      `${process.env,BASEURL}/City/getCitys`,
+      `${process.env.BASEURL}/City/getCitys`,
       {
         method: "POST",
         headers: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./index.module.css";
 import Swal from "sweetalert2";
 import Cookie from "js-cookie";
@@ -25,7 +25,8 @@ const Index = () => {
         rememberMe: true,
       };
 
-      fetch(`${process.env.BASEURL}/api/v1/Login/login`, {
+    //   fetch("http://62.3.41.67:8090/api/v1/Login/login", {
+      fetch(`${process.env.BASEURL}:8090/api/v1/Login/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +41,7 @@ const Index = () => {
             window.localStorage.setItem("token", data.token);
             window.localStorage.setItem("user", decoded.Id);
             Cookie.set("token", data.token);
-            Router.push("/profile");
+            Router.push("/profile-admin");
           } else {
             Swal.fire({
               icon: "error",

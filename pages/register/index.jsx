@@ -14,8 +14,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 const Index = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] =
-    useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
 
   function clickRegisterHandler() {
@@ -30,29 +29,17 @@ const Index = () => {
         confirmPassword: confirmPassword,
       };
 
-      fetch(
-        "http://62.3.41.67:8090/api/Register/registeruser",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      )
+      fetch(`${process.env.BASEURL}/api/Register/registeruser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.result.succeeded) {
-            // const decoded = jwt_decode(data.token);
-
-            // window.localStorage.setItem(
-            //   "token",
-            //   data.token
-            // );
-            // window.localStorage.setItem("user", decoded.Id);
-            // Cookie.set("token", data.token);
             router.push("/");
-
             Swal.fire({
               icon: "success",
               text: "ثبت نام شما موفقیت آمیز بود",
@@ -64,10 +51,6 @@ const Index = () => {
             });
           }
         });
-
-      setUsername("");
-      setPassword("");
-      setConfirmPassword("");
     } else {
       Swal.fire({
         icon: "error",
@@ -105,14 +88,10 @@ const Index = () => {
             type="password"
             placeholder="تکرار رمز عبور :‌"
             value={confirmPassword}
-            onChange={(e) =>
-              setConfirmPassword(e.target.value)
-            }
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </span>
-        <button onClick={clickRegisterHandler}>
-          ثبت نام
-        </button>
+        <button onClick={clickRegisterHandler}>ثبت نام</button>
       </div>
     </div>
   );

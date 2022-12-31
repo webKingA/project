@@ -44,15 +44,19 @@ const Header = () => {
 
         {isLogin ? (
           <div className={style.list_profile_menu}>
-            <BiUser
+            {/* <BiUser
               style={{ cursor: "pointer" }}
               onClick={() => setMenuProfile(!menuProfile)}
               size={26}
-            />
+            /> */}
+            <span className={style.list_profile_menu_links}>
+              <Link href="/login">ورود</Link>
+              <Link href="/register">ثبت نام</Link>
+            </span>
             <div
-              className={`${
-                style.list_profile_menu_option
-              } ${menuProfile ? style.active : null}`}
+              className={`${style.list_profile_menu_option} ${
+                menuProfile ? style.active : null
+              }`}
             >
               <Link href="/profile">پروفایل کاربری</Link>{" "}
               <Link href="/logout">خروج</Link>{" "}
@@ -60,8 +64,8 @@ const Header = () => {
           </div>
         ) : (
           <>
-          <Link href="/login">
-            {/* <Button
+            <Link href="/login">
+              {/* <Button
               variant="contained"
               style={{
                 padding: "5px 20px",
@@ -75,11 +79,10 @@ const Header = () => {
             >
               ورود
             </Button> */}
-            ورود
-    
-          </Link>
-          <Link href="/register">
-          {/* <Button
+              ورود
+            </Link>
+            <Link href="/register">
+              {/* <Button
               variant="contained"
               style={{
                 padding: "5px 20px",
@@ -93,9 +96,8 @@ const Header = () => {
             >
               ثبت نام
             </Button> */}
-            ثبت نام
-    
-          </Link>
+              ثبت نام
+            </Link>
           </>
         )}
 

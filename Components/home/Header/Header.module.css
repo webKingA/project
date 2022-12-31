@@ -105,3 +105,16 @@
   text-decoration: none !important;
   color: #151313 !important;
 }
+
+.list_profile_menu_links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.list_profile_menu_links > a {
+  text-decoration: none;
+  color: white;
+  font-family: v;
+  font-size: 13px;
+}

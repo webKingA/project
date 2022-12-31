@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps =
     const fetch = axios.create();
 
     const res = await fetch.post(
-      `${process.env.BASEURL}/InternalHotel/hotelavailability`,
+      `${process.env.process.env,BASEURL}/InternalHotel/hotelavailability`,
       data,
       {
         headers: {

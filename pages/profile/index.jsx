@@ -46,7 +46,7 @@ import {
   updatePhoneUser,
 } from "../../utils/editProfile";
 import fetchClient, {
-  BASEURL,
+  process.env,BASEURL,
 } from "../../utils/fetchClient";
 
 const Index = () => {
@@ -84,7 +84,7 @@ const Index = () => {
 
   useEffect(() => {
     const user = fetchClient
-      .get(`${BASEURL}/UserProfile/currentuser`)
+      .get(`${process.env,BASEURL}/UserProfile/currentuser`)
       .then((response) => setUser(response.data));
   }, []);
 

@@ -3,11 +3,11 @@ import axios, { AxiosRequestConfig } from "axios";
 import { toast } from "react-toastify";
 import { IServerResult } from "../interface/app.interface";
 import { ERequest } from "../interface/enum";
-import { BASEURL } from "./fetchClient";
+import { process.env,BASEURL } from "./fetchClient";
 
 
 export const ClientAxiosInstance = axios.create();
-ClientAxiosInstance.defaults.baseURL = BASEURL;
+ClientAxiosInstance.defaults.process.env,BASEURL = process.env,BASEURL;
 ClientAxiosInstance.defaults.timeout = 36_000_000; // 10min
 
 let timeout: number;

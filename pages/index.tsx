@@ -54,13 +54,14 @@ export const getServerSideProps: GetServerSideProps =
     const data = {
       pageNumber: null,
       pageSize: null,
-      name: "string",
+      name: "",
       fk_OstanId: null,
       fk_CountryId: null,
       isPriority: true,
     };
     const getCitys = await fetch(
-      `${process.env.BASEURL}/City/getCitys`,
+      // `${process.env.HOST}/City/getCitys`,
+      `http://62.3.41.67:8090/api/City/getCitys`,
       {
         method: "POST",
         headers: {

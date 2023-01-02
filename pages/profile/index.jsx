@@ -45,6 +45,7 @@ import {
   updateEmailUser,
   updatePhoneUser,
 } from "../../utils/editProfile";
+import fetchClient from "../../utils/fetchClient";
 
 
 const Index = () => {
@@ -82,7 +83,8 @@ const Index = () => {
 
   useEffect(() => {
     const user = fetchClient
-      .get(`${process.env.BASEURL}/UserProfile/currentuser`)
+      // .get(`${process.env.BASEURL}/UserProfile/currentuser`)
+      .get(`http://62.3.41.67:8090/api/UserProfile/currentuser`)
       .then((response) => setUser(response.data));
   }, []);
 

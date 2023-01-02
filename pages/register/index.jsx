@@ -29,7 +29,8 @@ const Index = () => {
         confirmPassword: confirmPassword,
       };
 
-      fetch(`${process.env.BASEURL}/api/Register/registeruser`, {
+      // fetch(`${process.env.BASEURL}/api/Register/registeruser`, {
+      fetch(`http://62.3.41.67:8090/api/Register/registeruser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
